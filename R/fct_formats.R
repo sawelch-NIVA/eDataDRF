@@ -93,7 +93,7 @@ initialise_userData <- function() {
 #' @importFrom tibble tibble
 #' @export
 initialise_campaign_tibble <- function() {
-  # Creates the CAMAPIGN table
+  # Creates the CAMPAIGN table
   tibble(
     CAMPAIGN_NAME_SHORT = character(),
     CAMPAIGN_NAME = character(),
@@ -301,7 +301,7 @@ initialise_sites_tibble <- function() {
 #' @export
 ## Initialise measurement combinations data frame ----
 initialise_measurements_tibble <- function() {
-  # Used to construct MEASURMENTS table
+  # Used to construct MEASUREMENTS table
   # Merges SAMPLES, COMPARTMENTS, BIOTA
   tibble(
     SITE_CODE = character(),
@@ -384,7 +384,6 @@ initialise_CREED_data_tibble <- function() {
 #'
 #' @return A character vector of geographic feature options
 #' @export
-#' @import ISOcodes
 geographic_features_vocabulary <- function() {
   c(
     "Not relevant",
@@ -452,8 +451,8 @@ coordinate_systems_vocabulary <- function() {
 #' Returns controlled vocabulary options for countries.
 #'
 #' @return A character vector of country options
+#' @importFrom ISOcodes ISO_3166_1
 #' @export
-#' @import ISOcodes
 countries_vocabulary <- function() {
   c(
     "Not relevant",
@@ -464,13 +463,21 @@ countries_vocabulary <- function() {
 
 #' Areas Controlled Vocabulary
 #'
-#' Returns controlled vocabulary options for areas.
+#' Returns controlled vocabulary options for areas (IHO ocean regions).
 #'
 #' @return A character vector of area options
-#' @export
 #' @importFrom dplyr pull
+#' @export
 areas_vocabulary <- function() {
-  IHO_oceans <- readRDS("inst/data/clean/IHO_oceans.rds") |> pull(NAME)
+  IHO_oceans <- readRDS(
+    system.file(
+      "extdata",
+      "IHO_oceans.rds",
+      package = "eDataDRF",
+      mustWork = TRUE
+    )
+  ) |>
+    pull(NAME)
 
   c(
     "Not relevant",
@@ -495,20 +502,30 @@ altitude_units_vocabulary <- function() {
 #' Returns dummy parameter data combining quality parameters and chemical parameters.
 #'
 #' @return A data frame of dummy parameter data
-#' @export
-#' @import dplyr
+#' @importFrom dplyr mutate arrange bind_rows case_when
 #' @importFrom arrow read_parquet
+#' @export
 # TODO: We call this "dummy" data for the simple reason that I've never looked for or made my own comprehensive list of quality parameters.
 dummy_parameters_vocabulary <- function() {
   # Read dummy_parameters ----
   dummy_quality_params <- read_parquet(
-    file = "inst/data/clean/dummy_quality_parameters.parquet"
+    file = system.file(
+      "extdata",
+      "dummy_quality_parameters.parquet",
+      package = "eDataDRF",
+      mustWork = TRUE
+    )
   ) |>
     mutate(ENTERED_BY = "saw@niva.no")
 
   # Read and prepare chemical_parameters ----
   chemical_parameters <- read_parquet(
-    file = "inst/data/clean/ClassyFire_Taxonomy_2025_02.parquet"
+    file = system.file(
+      "extdata",
+      "ClassyFire_Taxonomy_2025_02.parquet",
+      package = "eDataDRF",
+      mustWork = TRUE
+    )
   ) |>
     mutate(
       MEASURED_TYPE = "Concentration",
@@ -551,9 +568,8 @@ parameter_types_vocabulary <- function() {
 #' Returns controlled vocabulary options for parameter type subcategories.
 #'
 #' @return A character vector of parameter type subcategory options
+#' @importFrom dplyr select distinct arrange pull
 #' @export
-#' @import dplyr
-#' @importFrom arrow read_parquet
 parameter_types_sub_vocabulary <- function() {
   dummy_parameters <- dummy_parameters_vocabulary()
 
@@ -668,16 +684,21 @@ measured_categories_vocabulary <- function() {
 
 #' Species Controlled Vocabulary
 #'
-#' Returns species name options drom ECOTOX data
+#' Returns species name options from ECOTOX data
 #'
-#' @return A character vector of parameter type subcategory options
-#' @export
-#' @import dplyr
+#' @return A data frame of species information
+#' @importFrom dplyr mutate bind_rows
 #' @importFrom tibble tibble
 #' @importFrom arrow read_parquet
+#' @export
 species_names_vocabulary <- function() {
   read_parquet(
-    "inst/data/clean/ecotox_2025_06_12_species.parquet"
+    system.file(
+      "extdata",
+      "ecotox_2025_06_12_species.parquet",
+      package = "eDataDRF",
+      mustWork = TRUE
+    )
   ) |>
     mutate(
       SPECIES_COMMON_NAME = common_name,
@@ -883,8 +904,8 @@ reference_character_limits <- function() {
 #' Returns sampling protocol options as a tibble with Protocol_Type, Short_Name, and Long_Name columns.
 #'
 #' @return A tibble with sampling protocol options
-#' @export
 #' @importFrom tibble tribble
+#' @export
 sampling_protocols_vocabulary <- function() {
   tribble(
     ~Protocol_Type      , ~Short_Name        , ~Long_Name                            ,
@@ -918,8 +939,8 @@ sampling_protocols_vocabulary <- function() {
 #' Returns fractionation protocol options as a tibble with Protocol_Type, Short_Name, and Long_Name columns.
 #'
 #' @return A tibble with fractionation protocol options
-#' @export
 #' @importFrom tibble tribble
+#' @export
 fractionation_protocols_vocabulary <- function() {
   tribble(
     ~Protocol_Type           , ~Short_Name         , ~Long_Name                                  ,
@@ -950,8 +971,8 @@ fractionation_protocols_vocabulary <- function() {
 #' Returns extraction protocol options as a tibble with Protocol_Type, Short_Name, and Long_Name columns.
 #'
 #' @return A tibble with extraction protocol options
-#' @export
 #' @importFrom tibble tribble
+#' @export
 extraction_protocols_vocabulary <- function() {
   tribble(
     ~Protocol_Type        , ~Short_Name                         , ~Long_Name                                           ,
@@ -982,8 +1003,8 @@ extraction_protocols_vocabulary <- function() {
 #' Returns analytical protocol options as a tibble with Protocol_Type, Short_Name, and Long_Name columns.
 #'
 #' @return A tibble with analytical protocol options
-#' @export
 #' @importFrom tibble tribble
+#' @export
 analytical_protocols_vocabulary <- function() {
   tribble(
     ~Protocol_Type        , ~Short_Name          , ~Long_Name                                                 ,
@@ -1010,8 +1031,8 @@ analytical_protocols_vocabulary <- function() {
 #' Returns all protocol options data by combining all individual protocol vocabularies.
 #'
 #' @return A tibble with Protocol_Type, Short_Name, and Long_Name columns for all protocols
-#' @export
 #' @importFrom dplyr bind_rows
+#' @export
 protocol_options_vocabulary <- function() {
   bind_rows(
     sampling_protocols_vocabulary(),
@@ -1043,11 +1064,16 @@ protocol_categories_vocabulary <- function() {
 #'
 #' @returns a dataframe or a character vector
 #'
-#' @export
 #' @importFrom readr read_csv
+#' @export
 parameter_unit_vocabulary <- function(select_column = NULL) {
   units <- read_csv(
-    file = "inst/data/clean/unit_conversion_factors.csv",
+    file = system.file(
+      "extdata",
+      "unit_conversion_factors.csv",
+      package = "eDataDRF",
+      mustWork = TRUE
+    ),
     col_names = TRUE,
     show_col_types = FALSE
   )
@@ -1074,7 +1100,7 @@ measured_flags_vocabulary <- function() {
 #'
 #' @description Returns the standardised CREED assessment scoring options
 #' @return Named character vector with CREED scoring choices
-# FIXME: Why isn't "Not Relevant" showing up as an option?
+#' @export
 CREED_choices_vocabulary <- function() {
   c(
     "Not Met" = 4,

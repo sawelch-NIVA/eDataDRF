@@ -1,3 +1,4 @@
 ^eDataDRF\.Rproj$
 ^\.Rproj\.user$
 scratchpad/*
+^LICENSE\.md$
