@@ -18,7 +18,8 @@
 #'
 #' @return Character. The abbreviated and formatted string.
 #'
-#' @importFrom stringr str_to_title str_split
+#' @importFrom stringr str_to_title str_split str_to_sentence str_to_snake str_to_camel
+#' @importFrom utils head
 #'
 #' @examples
 #' abbreviate_string("Total Phosphorus Concentration", n_words = 2L, "snake")
@@ -60,28 +61,14 @@ abbreviate_string <- function(
     case,
     "lower" = paste(tolower(selected_words), collapse = ""),
     "upper" = paste(toupper(selected_words), collapse = ""),
-    "sentence" = {
-      words_lower <- tolower(selected_words)
-      words_lower[1] <- paste0(
-        toupper(substr(words_lower[1], 1, 1)),
-        substr(words_lower[1], 2, nchar(words_lower[1]))
-      )
-      paste(words_lower, collapse = "")
-    },
-    "snake" = paste(tolower(selected_words), collapse = "_"),
+    "sentence" = paste(str_to_sentence(selected_words), collapse = " "),
+    "snake" = paste(str_to_snake(selected_words), collapse = "_"),
     "title" = paste(str_to_title(selected_words), collapse = ""),
-    "screamingsnake" = paste(toupper(selected_words), collapse = "_"),
-    "camel" = {
-      camel_words <- selected_words
-      # Capitalise first letter of each word
-      camel_words <- paste0(
-        toupper(substr(camel_words, 1, 1)),
-        tolower(substr(camel_words, 2, nchar(camel_words)))
-      )
-      # Make first word lowercase
-      camel_words[1] <- tolower(camel_words[1])
-      paste0(camel_words, collapse = "")
-    }
+    "screamingsnake" = paste(
+      toupper(str_to_snake(selected_words)),
+      collapse = "_"
+    ),
+    "camel" = str_to_camel(paste(selected_words, collapse = " ")),
   )
 
   return(result)
