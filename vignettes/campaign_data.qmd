@@ -1,0 +1,25 @@
+---
+title: "campaign_data"
+vignette: >
+  %\VignetteIndexEntry{campaign_data}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+**Campaign data** is intended to track social and institutional factors behind a sample that are not otherwise captured by citations/references. It's a mess, and includes a bunch of fields that it probably shouldn't.
+
+```{r}
+#| label: setup
+library(eDataDRF)
+```
+
+
+```{r}
+#| label: the function
+
+initialise_campaign_tibble()
+```

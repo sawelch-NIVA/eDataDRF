@@ -48,3 +48,8 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 docs
+inst/doc
+**/.quarto/
+
+# R code not intended for inclusion
+scratchpad/

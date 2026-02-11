@@ -2,3 +2,26 @@ url: https://NIVANorge.github.io/eDataDRF/
 template:
   bootstrap: 5
 
+reference:
+- title: Initialise tibbles
+  desc:  Create empty versions of the format's tables as R tibble objects
+- contents:
+  - starts_with("initialise_")
+- title: Controlled vocabulary
+  desc: Vectors (and sometimes tibbles) of controlled vocabulary
+- contents:
+  - ends_with("_vocabulary")
+- title: Character limits
+  desc: We should perhaps have more than one of these, eh?
+- contents:
+  - ends_with("_limits")
+- title: Generate IDs
+  desc: Generate ID strings based on abbreviated titles
+- contents:
+  - abbreviate_string
+  - generate_reference_id
+- title: Export
+  desc: Export tables as zipped CSV files
+- contents:
+  - get_dataset_display_name
+  - export_campaign_zip

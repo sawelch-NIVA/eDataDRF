@@ -18,6 +18,9 @@ Imports:
     tibble,
     zip
 Suggests: 
+    knitr,
+    quarto,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://sawelch-niva.github.io/eDataDRF/
+VignetteBuilder: quarto

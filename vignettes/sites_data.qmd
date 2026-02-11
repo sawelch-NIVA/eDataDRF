@@ -1,0 +1,16 @@
+---
+title: "sites_data"
+vignette: >
+  %\VignetteIndexEntry{sites_data}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+```{r}
+#| label: setup
+library(eDataDRF)
+```
