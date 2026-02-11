@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 scratchpad/*
 ^LICENSE\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
