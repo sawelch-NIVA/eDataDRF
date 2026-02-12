@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{sampling_protocols_vocabulary}
 \alias{sampling_protocols_vocabulary}
-\title{Sampling Protocol Options Vocabulary}
+\title{Controlled vocabulary for PROTOCOL_NAME and PROTOCOL_TYPE (sampling protocols)}
 \usage{
 sampling_protocols_vocabulary()
 }

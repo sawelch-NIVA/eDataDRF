@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{initialise_sites_tibble}
 \alias{initialise_sites_tibble}
-\title{Initialise Sites Data Tibble}
+\title{Initialise a table to store formatted geographical data}
 \usage{
 initialise_sites_tibble()
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{environ_compartments_vocabulary}
 \alias{environ_compartments_vocabulary}
-\title{Environmental Compartments Controlled Vocabulary}
+\title{Controlled vocabulary for ENVIRON_COMPARTMENT}
 \usage{
 environ_compartments_vocabulary()
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{initialise_campaign_tibble}
 \alias{initialise_campaign_tibble}
-\title{Initialise Campaign Data Tibble}
+\title{Initialise a table to store formatted campaign data}
 \usage{
 initialise_campaign_tibble()
 }
@@ -13,4 +13,7 @@ A tibble with 0 rows and standardised campaign columns
 Creates an empty tibble with the standardised column structure for campaign data.
 Campaigns represent sampling projects or studies with metadata about timing,
 organization, data quality evaluation, and confidentiality.
+}
+\details{
+See vignette("campaign-data") for more information.
 }

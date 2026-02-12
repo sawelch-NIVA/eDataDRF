@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{environ_compartments_sub_vocabulary}
 \alias{environ_compartments_sub_vocabulary}
-\title{Sub-compartment Options Mapping}
+\title{Controlled vocabulary for ENVIRON_COMPARTMENT_SUB}
 \usage{
 environ_compartments_sub_vocabulary()
 }

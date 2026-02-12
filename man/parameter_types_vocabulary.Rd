@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{parameter_types_vocabulary}
 \alias{parameter_types_vocabulary}
-\title{Parameter Types Controlled Vocabulary}
+\title{Controlled vocabulary for PARAMETER_TYPE}
 \usage{
 parameter_types_vocabulary()
 }

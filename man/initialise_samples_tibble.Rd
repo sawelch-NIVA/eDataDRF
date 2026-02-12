@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{initialise_samples_tibble}
 \alias{initialise_samples_tibble}
-\title{Initialise Samples Data Tibble}
+\title{Initialise a table to store formatted sampling combinations}
 \usage{
 initialise_samples_tibble()
 }

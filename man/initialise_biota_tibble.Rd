@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{initialise_biota_tibble}
 \alias{initialise_biota_tibble}
-\title{Initialise Biota Data Tibble}
+\title{Initialise a table to store formatted biota data}
 \usage{
 initialise_biota_tibble()
 }

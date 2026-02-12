@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{initialise_compartments_tibble}
 \alias{initialise_compartments_tibble}
-\title{Initialise Compartments Data Tibble}
+\title{Initialise a table to store formatted environmental compartment data}
 \usage{
 initialise_compartments_tibble()
 }

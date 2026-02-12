@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{measured_categories_vocabulary}
 \alias{measured_categories_vocabulary}
-\title{Measured Categories Controlled Vocabulary}
+\title{Controlled vocabulary for MEASURED_CATEGORY}
 \usage{
 measured_categories_vocabulary()
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{CREED_choices_vocabulary}
 \alias{CREED_choices_vocabulary}
-\title{CREED Assessment Scoring Choices}
+\title{Controlled vocabulary for CREED Scores}
 \usage{
 CREED_choices_vocabulary()
 }

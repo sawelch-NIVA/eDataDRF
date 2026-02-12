@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{areas_vocabulary}
 \alias{areas_vocabulary}
-\title{Areas Controlled Vocabulary}
+\title{Controlled vocabulary for OCEAN_IHO}
 \usage{
 areas_vocabulary()
 }

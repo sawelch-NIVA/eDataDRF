@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{protocol_options_vocabulary}
 \alias{protocol_options_vocabulary}
-\title{Protocol Options Data}
+\title{Controlled vocabulary for PROTOCOL_NAME and PROTOCOL_TYPE (all protocols)}
 \usage{
 protocol_options_vocabulary()
 }

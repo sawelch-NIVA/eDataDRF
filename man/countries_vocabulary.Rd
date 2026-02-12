@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{countries_vocabulary}
 \alias{countries_vocabulary}
-\title{Countries Controlled Vocabulary}
+\title{Controlled vocabulary for COUNTRY_ISO}
 \usage{
 countries_vocabulary()
 }

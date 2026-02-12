@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{altitude_units_vocabulary}
 \alias{altitude_units_vocabulary}
-\title{Altitude Units Controlled Vocabulary}
+\title{Controlled vocabulary for ALTITUDE_UNIT}
 \usage{
 altitude_units_vocabulary()
 }

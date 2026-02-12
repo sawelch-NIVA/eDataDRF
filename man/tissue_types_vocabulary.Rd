@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{tissue_types_vocabulary}
 \alias{tissue_types_vocabulary}
-\title{Initialise Tissue Types Controlled Vocabulary}
+\title{Controlled vocabulary for SAMPLE_TISSUE}
 \usage{
 tissue_types_vocabulary()
 }

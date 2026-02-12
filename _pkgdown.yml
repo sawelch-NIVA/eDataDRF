@@ -2,6 +2,11 @@ url: https://NIVANorge.github.io/eDataDRF/
 template:
   bootstrap: 5
 
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search, github, lightswitch]
+
 reference:
 - title: Initialise tibbles
   desc:  Create empty versions of the format's tables as R tibble objects

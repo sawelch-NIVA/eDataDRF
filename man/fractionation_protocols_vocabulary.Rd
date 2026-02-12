@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{fractionation_protocols_vocabulary}
 \alias{fractionation_protocols_vocabulary}
-\title{Fractionation Protocol Options Vocabulary}
+\title{Controlled vocabulary for PROTOCOL_NAME and PROTOCOL_TYPE (fractionation protocols)}
 \usage{
 fractionation_protocols_vocabulary()
 }

@@ -17,6 +17,8 @@
 #' Campaigns represent sampling projects or studies with metadata about timing,
 #' organization, data quality evaluation, and confidentiality.
 #'
+#' See vignette("campaign-data") for more information.
+#'
 #' @return A tibble with 0 rows and standardised campaign columns
 #' @importFrom tibble tibble
 #' @export

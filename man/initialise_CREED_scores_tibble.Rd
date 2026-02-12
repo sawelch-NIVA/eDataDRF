@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{initialise_CREED_scores_tibble}
 \alias{initialise_CREED_scores_tibble}
-\title{Initialise CREED Scores Tibble}
+\title{Initialise a table to store CREED final score data}
 \usage{
 initialise_CREED_scores_tibble()
 }

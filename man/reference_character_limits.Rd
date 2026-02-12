@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{reference_character_limits}
 \alias{reference_character_limits}
-\title{reference_character_limits}
+\title{Character limits for fields in References}
 \usage{
 reference_character_limits()
 }
@@ -10,5 +10,5 @@ reference_character_limits()
 a list of character limits for fields in mod_references
 }
 \description{
-reference_character_limits
+Character limits for fields in References
 }

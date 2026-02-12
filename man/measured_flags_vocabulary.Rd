@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{measured_flags_vocabulary}
 \alias{measured_flags_vocabulary}
-\title{Measurement Flags Controlled Vocabulary}
+\title{Controlled vocabulary for MEASUREMENT_FLAG}
 \usage{
 measured_flags_vocabulary()
 }

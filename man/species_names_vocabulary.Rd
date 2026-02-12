@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{species_names_vocabulary}
 \alias{species_names_vocabulary}
-\title{Species Controlled Vocabulary}
+\title{Controlled vocabulary for SAMPLE_SPECIES}
 \usage{
 species_names_vocabulary()
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{protocol_categories_vocabulary}
 \alias{protocol_categories_vocabulary}
-\title{Protocol Categories Controlled Vocabulary}
+\title{Controlled vocabulary for PROTOCOL_TYPE}
 \usage{
 protocol_categories_vocabulary()
 }

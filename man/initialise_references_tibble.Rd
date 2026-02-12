@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{initialise_references_tibble}
 \alias{initialise_references_tibble}
-\title{Initialise References Data Tibble}
+\title{Initialise a table to store formatted academic citation data}
 \usage{
 initialise_references_tibble()
 }

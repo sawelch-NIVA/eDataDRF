@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{uncertainty_types_vocabulary}
 \alias{uncertainty_types_vocabulary}
-\title{Uncertainty Types Controlled Vocabulary}
+\title{Controlled vocabulary for UNCERTAINTY_TYPE}
 \usage{
 uncertainty_types_vocabulary()
 }

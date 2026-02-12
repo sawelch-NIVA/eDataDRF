@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{extraction_protocols_vocabulary}
 \alias{extraction_protocols_vocabulary}
-\title{Extraction Protocol Options Vocabulary}
+\title{Controlled vocabulary for PROTOCOL_NAME and PROTOCOL_TYPE (extraction protocols)}
 \usage{
 extraction_protocols_vocabulary()
 }
