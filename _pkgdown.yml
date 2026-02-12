@@ -6,6 +6,14 @@ navbar:
   structure:
     left: [intro, reference, articles, news]
     right: [search, github, lightswitch]
+  components:
+    articles:
+    text: Articles
+      menu: 
+      - text: Campaign data
+        href: vignettes/camapaign_data.html
+
+
 
 reference:
 - title: Initialise tibbles
@@ -16,6 +24,7 @@ reference:
   - initialise_sites_tibble
   - initialise_parameters_tibble
   - initialise_compartments_tibble
+  - initialise_methods_tibble
   - initialise_samples_tibble
   - initialise_biota_tibble
   - initialise_measurements_tibble
