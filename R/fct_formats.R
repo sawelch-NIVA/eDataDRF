@@ -20,29 +20,23 @@
 #' organisation, data quality evaluation, and confidentiality. The tibble includes
 #' the following columns:
 #'
-#' CAMPAIGN_NAME_SHORT: Short identifier for the campaign
+#' CAMPAIGN_NAME_SHORT: Short identifier for the campaign (mandatory)
 #'
-#' CAMPAIGN_NAME: Full descriptive name of the campaign
+#' CAMPAIGN_NAME: Full descriptive name of the campaign (mandatory)
 #'
-#' CAMPAIGN_START_DATE: Date when campaign sampling began
+#' CAMPAIGN_START_DATE: Date when campaign sampling began (mandatory)
 #'
-#' CAMPAIGN_END_DATE: Date when campaign sampling ended
+#' CAMPAIGN_END_DATE: Date when campaign sampling ended (optional)
 #'
-#' RELIABILITY_SCORE: Quality assessment score for the campaign data
+#' ORGANISATION: Organisation responsible for the campaign (mandatory)
 #'
-#' RELIABILITY_EVAL_SYS: System or framework used for reliability evaluation
+#' ENTERED_BY: Person or entity who entered the data (mandatory)
 #'
-#' CONFIDENTIALITY_EXPIRY_DATE: Date when data confidentiality restrictions expire
+#' ENTERED_DATE: Date when the data was entered into the system (mandatory)
 #'
-#' ORGANISATION: Organisation responsible for the campaign
+#' CAMPAIGN_COMMENT: Additional notes or comments about the campaign (optional)
 #'
-#' ENTERED_BY: Person or entity who entered the data
-#'
-#' ENTERED_DATE: Date when the data was entered into the system
-#'
-#' CAMPAIGN_COMMENT: Additional notes or comments about the campaign
-#'
-#' See vignette("campaign-data") for more information.
+#' See `vignette("campaign-data")` for more information.
 #'
 #' @return A tibble with 0 rows and standardised campaign columns
 #' @family initialise_tibble
@@ -55,9 +49,6 @@ initialise_campaign_tibble <- function() {
     CAMPAIGN_NAME = character(),
     CAMPAIGN_START_DATE = as.Date(character()),
     CAMPAIGN_END_DATE = as.Date(character()),
-    RELIABILITY_SCORE = character(),
-    RELIABILITY_EVAL_SYS = character(),
-    CONFIDENTIALITY_EXPIRY_DATE = as.Date(character()),
     ORGANISATION = character(),
     ENTERED_BY = character(),
     ENTERED_DATE = as.Date(character()),
@@ -74,33 +65,33 @@ initialise_campaign_tibble <- function() {
 #' taxonomic classification, tissue type, life stage, and gender information. The
 #' tibble includes the following columns:
 #'
-#' SAMPLE_ID: Unique identifier linking to the samples table
+#' SAMPLE_ID: Unique identifier linking to the samples table (mandatory, foreign key for measurements)
 #'
-#' SITE_CODE: Code identifying the sampling location
+#' SITE_CODE: Code identifying the sampling location (mandatory, foreign key for sites)
 #'
-#' PARAMETER_NAME: Name of the measured parameter or stressor
+#' PARAMETER_NAME: Name of the measured parameter or stressor (mandatory, foreign key for parameters)
 #'
-#' ENVIRON_COMPARTMENT: Broad environmental compartment category
+#' ENVIRON_COMPARTMENT: Broad environmental compartment category (mandatory, inherited from samples)
 #'
-#' ENVIRON_COMPARTMENT_SUB: Specific sub-category of the environmental compartment
+#' ENVIRON_COMPARTMENT_SUB: Specific sub-category of the environmental compartment (mandatory, inherited from samples)
 #'
-#' MEASURED_CATEGORY: Category indicating measurement context (External, Internal, Surface)
+#' MEASURED_CATEGORY: Category indicating measurement context (mandatory, inherited from samples)
 #'
-#' SAMPLING_DATE: Date when the biological sample was collected
+#' SAMPLING_DATE: Date when the biological sample was collected (mandatory, inherited from samples)
 #'
-#' SUBSAMPLE: Identifier for subsample or replicate
+#' SUBSAMPLE: Identifier for subsample or replicate (mandatory, inherited from samples)
 #'
-#' SPECIES_GROUP: Taxonomic group classification (e.g., Fish, Molluscs, Plants)
+#' SPECIES_GROUP: Taxonomic group classification, e.g., Fish, Molluscs, Plants (mandatory)
 #'
-#' SAMPLE_SPECIES: Scientific or common name of the sampled species
+#' SAMPLE_SPECIES: Scientific binomial name of the sampled species (mandatory)
 #'
-#' SAMPLE_TISSUE: Type of biological tissue sampled
+#' SAMPLE_TISSUE: Type of biological tissue sampled (mandatory)
 #'
-#' SAMPLE_SPECIES_LIFESTAGE: Life stage of the organism at sampling
+#' SAMPLE_SPECIES_LIFESTAGE: Life stage of the organism at sampling (mandatory)
 #'
-#' SAMPLE_SPECIES_GENDER: Gender or sex of the sampled organism
+#' SAMPLE_SPECIES_GENDER: Gender or sex of the sampled organism (mandatory)
 #'
-#' BIOTA_COMMENT: Additional notes or comments about the biological sample
+#' BIOTA_COMMENT: Additional notes or comments about the biological sample (optional)
 #'
 #' @return A tibble with 0 rows and standardised biota columns
 #' @family initialise_tibble
@@ -133,15 +124,15 @@ initialise_biota_tibble <- function() {
 #'
 #' @details
 #' Compartments define the environmental matrix and measurement context for sampling
-#' activities. The tibble includes the following columns:
+#' activities. The compartments table is not a direct output of the eData format but is used to
+#' construct the samples table.
+#' The tibble includes the following columns:
 #'
 #' ENVIRON_COMPARTMENT: Broad environmental compartment (Aquatic, Atmospheric, Terrestrial, Biota)
 #'
 #' ENVIRON_COMPARTMENT_SUB: Specific sub-category within the compartment
 #'
 #' MEASURED_CATEGORY: Measurement context (External Media, Internal to Organism, Surface of Organism)
-#'
-#' One immediate child function: create_compartment_combination() in mod_compartments_fct.R
 #'
 #' @return A tibble with 0 rows and standardised compartment columns
 #' @family initialise_tibble
@@ -328,9 +319,9 @@ initialise_references_tibble <- function() {
 #'
 #' PARAMETER_TYPE: Classification of the parameter
 #'
-#' ENVIRON_COMPARTMENT: Environmental compartment sampled
+#' ENVIRON_COMPARTMENT: Environmental compartment defined as one of the earth's spheres (aquatic, atmospheric, etc.)
 #'
-#' ENVIRON_COMPARTMENT_SUB: Specific sub-compartment
+#' ENVIRON_COMPARTMENT_SUB: Sub-divisions of environmental compartments into water body types, soil profile, etc.
 #'
 #' MEASURED_CATEGORY: Measurement context category
 #'
@@ -656,7 +647,7 @@ initialise_CREED_data_tibble <- function() {
 #' Other
 #'
 #' @return A character vector of geographic feature options
-#' @family vocabulary
+
 #' @family site
 #' @export
 geographic_features_vocabulary <- function() {
@@ -705,7 +696,7 @@ geographic_features_vocabulary <- function() {
 #' Other
 #'
 #' @return A character vector of geographic feature subcategory options
-#' @family vocabulary
+
 #' @family site
 #' @export
 geographic_features_sub_vocabulary <- function() {
@@ -745,8 +736,10 @@ geographic_features_sub_vocabulary <- function() {
 #'
 #' Other
 #'
+#' More CRS will be added as needed. In long term, vocabulary may be replaced entirely for better standisation with
+#' EPSG and/or PROJ4String.
+#'
 #' @return A character vector of coordinate system options
-#' @family vocabulary
 #' @family site
 #' @export
 coordinate_systems_vocabulary <- function() {
@@ -778,7 +771,6 @@ coordinate_systems_vocabulary <- function() {
 #' All ISO 3166-1 country names (e.g., Afghanistan, Albania, Algeria, ...)
 #'
 #' @return A character vector of country options
-#' @family vocabulary
 #' @family site
 #' @import ISOcodes
 #' @export
@@ -796,7 +788,8 @@ countries_vocabulary <- function() {
 #'
 #' @details
 #' Provides ocean and sea names from the International Hydrographic Organisation (IHO)
-#' regions dataset. The complete list is read from an internal data file (IHO_oceans.rds)
+#' regions dataset, downloaded from https://www.marineregions.org/download_file.php?name=World_Seas_IHO_v3.zip.
+#' The complete list is read from an internal data file (IHO_oceans.rds)
 #' and includes options such as:
 #'
 #' Not relevant
@@ -810,7 +803,6 @@ countries_vocabulary <- function() {
 #' Data source: extdata/IHO_oceans.rds
 #'
 #' @return A character vector of ocean area options
-#' @family vocabulary
 #' @family site
 #' @importFrom dplyr pull
 #' @export
@@ -849,7 +841,6 @@ areas_vocabulary <- function() {
 #' mm
 #'
 #' @return A character vector of altitude unit options
-#' @family vocabulary
 #' @family site
 #' @export
 altitude_units_vocabulary <- function() {
@@ -877,7 +868,6 @@ altitude_units_vocabulary <- function() {
 #' extdata/ClassyFire_Taxonomy_2025_02.parquet
 #'
 #' @return A data frame combining quality and chemical parameter data
-#' @family vocabulary
 #' @family parameter
 #' @importFrom dplyr mutate arrange bind_rows case_when
 #' @importFrom arrow read_parquet
@@ -944,7 +934,6 @@ dummy_parameters_vocabulary <- function() {
 #' Other
 #'
 #' @return A character vector of parameter type options
-#' @family vocabulary
 #' @family parameter
 #' @export
 parameter_types_vocabulary <- function() {
@@ -975,7 +964,6 @@ parameter_types_vocabulary <- function() {
 #' All unique sub-types from dummy_parameters_vocabulary() (e.g., Carbon, Inorganic compounds, Organic compounds, etc.)
 #'
 #' @return A character vector of parameter type subcategory options
-#' @family vocabulary
 #' @family parameter
 #' @importFrom dplyr select distinct arrange pull
 #' @export
@@ -1025,7 +1013,6 @@ parameter_types_sub_vocabulary <- function() {
 #' Other
 #'
 #' @return A character vector of measured type options
-#' @family vocabulary
 #' @family parameter
 #' @family measurement
 #' @export
@@ -1064,7 +1051,6 @@ measured_types_vocabulary <- function() {
 #' Biota: Biota, Terrestrial, Biota, Aquatic, Biota, Atmospheric, Biota, Other
 #'
 #' @return A named list of character vectors with sub-compartment options for each main compartment
-#' @family vocabulary
 #' @family compartment
 #' @export
 environ_compartments_sub_vocabulary <- function() {
@@ -1129,7 +1115,6 @@ environ_compartments_sub_vocabulary <- function() {
 #' Other
 #'
 #' @return A character vector of environmental compartment options
-#' @family vocabulary
 #' @family compartment
 #' @export
 environ_compartments_vocabulary <- function() {
@@ -1159,7 +1144,6 @@ environ_compartments_vocabulary <- function() {
 #' Surface: Surface of Organism
 #'
 #' @return A character vector of measured category options
-#' @family vocabulary
 #' @family compartment
 #' @family measurement
 #' @export
@@ -1184,7 +1168,7 @@ measured_categories_vocabulary <- function() {
 #'
 #' SPECIES_NAME: Scientific (Latin) name
 #'
-#' SPECIES_KINGDOM: Taxonomic kingdom
+#' SPECIES_KINGDOM: Taxonomic kingdom (not used in the format)
 #'
 #' SPECIES_GROUP: Broad taxonomic grouping
 #'
@@ -1193,7 +1177,6 @@ measured_categories_vocabulary <- function() {
 #' Data source: extdata/ecotox_2025_06_12_species.parquet
 #'
 #' @return A data frame of species information
-#' @family vocabulary
 #' @family biota
 #' @importFrom dplyr mutate bind_rows
 #' @importFrom tibble tibble
@@ -1292,8 +1275,9 @@ species_names_vocabulary <- function() {
 #'
 #' Other
 #'
+#' In future, this will be standardised with the BRENDA and/or Uberon tissue ontologies.
+#'
 #' @return A character vector of tissue type options
-#' @family vocabulary
 #' @family biota
 #' @export
 tissue_types_vocabulary <- function() {
@@ -1364,7 +1348,6 @@ tissue_types_vocabulary <- function() {
 #' Other
 #'
 #' @return A character vector of life stage options
-#' @family vocabulary
 #' @family biota
 #' @export
 lifestage_vocabulary <- function() {
@@ -1406,7 +1389,7 @@ lifestage_vocabulary <- function() {
 #' Other
 #'
 #' @return A character vector of gender options
-#' @family vocabulary
+
 #' @family biota
 #' @export
 gender_vocabulary <- function() {
@@ -1465,7 +1448,7 @@ gender_vocabulary <- function() {
 #' Other
 #'
 #' @return A character vector of species group options
-#' @family vocabulary
+
 #' @family biota
 #' @export
 species_groups_vocabulary <- function() {
@@ -1550,7 +1533,7 @@ species_groups_vocabulary <- function() {
 #' Other
 #'
 #' @return A character vector of uncertainty type options
-#' @family vocabulary
+
 #' @family measurement
 #' @export
 uncertainty_types_vocabulary <- function() {
@@ -1660,7 +1643,7 @@ reference_character_limits <- function() {
 #' Available protocols include: Not relevant, Not reported, Point, Composite, Trawl, Grab, Core, Seine net, Electrofishing, Plankton net, Bailer, Peristaltic pump, Active air, Passive air, SPMD, SPE, LVSPE, DGT, Caged organisms, Blood sample, Biopsy, Other
 #'
 #' @return A tibble with Protocol_Type, Short_Name, and Long_Name columns
-#' @family vocabulary
+
 #' @family method
 #' @importFrom tibble tribble
 #' @export
@@ -1708,7 +1691,7 @@ sampling_protocols_vocabulary <- function() {
 #' Available protocols include: Not relevant, Not reported, Total, Particles, Colloidal, LMM, Aqueous, Filtered 0.45um, Filtered 0.2um, Dissolved, Filtered, Acid extractable, Reducible, Oxidisable, Residual, Bioavailable, Free ion, Size fractionated, Other
 #'
 #' @return A tibble with Protocol_Type, Short_Name, and Long_Name columns
-#' @family vocabulary
+
 #' @family method
 #' @importFrom tibble tribble
 #' @export
@@ -1753,7 +1736,7 @@ fractionation_protocols_vocabulary <- function() {
 #' Available protocols include: Not relevant, Not reported, None, Methanol, Dichloromethane, SPE Isolute Env+, Membrane filtration 0.45um, Membrane filtration 0.2um, Membrane filtration, Filtration, Microwave-assisted acid digestion, Acid digestion, Pressurised liquid, Ultrasonic, Soxhlet, QuEChERS, Accelerated solvent, Sequential extraction, Other
 #'
 #' @return A tibble with Protocol_Type, Short_Name, and Long_Name columns
-#' @family vocabulary
+
 #' @family method
 #' @importFrom tibble tribble
 #' @export
@@ -1798,7 +1781,7 @@ extraction_protocols_vocabulary <- function() {
 #' Available protocols include: Not relevant, Not reported, GC-MS, LC-MS, LC-MS/MS, GC-MS/MS, UPLC, ICP-MS, ICP-OES, AAS, XRF, Ion chromatography, Spectrophotometry, Fluorescence, Other
 #'
 #' @return A tibble with Protocol_Type, Short_Name, and Long_Name columns
-#' @family vocabulary
+
 #' @family method
 #' @importFrom tibble tribble
 #' @export
@@ -1842,7 +1825,7 @@ analytical_protocols_vocabulary <- function() {
 #' analytical_protocols_vocabulary().
 #'
 #' @return A tibble with Protocol_Type, Short_Name, and Long_Name columns for all protocols
-#' @family vocabulary
+
 #' @family method
 #' @importFrom dplyr bind_rows
 #' @export
@@ -1872,7 +1855,7 @@ protocol_options_vocabulary <- function() {
 #' Analytical Protocol
 #'
 #' @return A character vector of protocol category options
-#' @family vocabulary
+
 #' @family method
 #' @export
 protocol_categories_vocabulary <- function() {
@@ -1907,7 +1890,7 @@ protocol_categories_vocabulary <- function() {
 #' Data source: extdata/unit_conversion_factors.csv
 #'
 #' @return A dataframe (if select_column is NULL) or a character vector (if column specified)
-#' @family vocabulary
+
 #' @family measurement
 #' @importFrom readr read_csv
 #' @export
@@ -1945,7 +1928,7 @@ parameter_unit_vocabulary <- function(select_column = NULL) {
 #' < LOD (below limit of detection)
 #'
 #' @return A character vector of measurement flag options
-#' @family vocabulary
+
 #' @family measurement
 #' @export
 measured_flags_vocabulary <- function() {
@@ -1972,7 +1955,7 @@ measured_flags_vocabulary <- function() {
 #' Not Relevant: Score value 1
 #'
 #' @return Named character vector with CREED scoring choices and their numeric values
-#' @family vocabulary
+
 #' @family CREED
 #' @export
 CREED_choices_vocabulary <- function() {
