@@ -2,13 +2,34 @@
 % Please edit documentation in R/fct_formats.R
 \name{analytical_protocols_vocabulary}
 \alias{analytical_protocols_vocabulary}
-\title{Analytical Protocol Options Vocabulary}
+\title{Analytical protocols controlled vocabulary}
 \usage{
 analytical_protocols_vocabulary()
 }
 \value{
-A tibble with analytical protocol options
+A tibble with Protocol_Type, Short_Name, and Long_Name columns
 }
 \description{
-Returns analytical protocol options as a tibble with Protocol_Type, Short_Name, and Long_Name columns.
+Returns analytical protocol options with short and long names.
 }
+\details{
+Provides standardised analytical method classifications as a tibble with three columns:
+
+Protocol_Type: Always "Analytical Protocol"
+
+Short_Name: Abbreviated protocol name (e.g., "GC-MS", "LC-MS/MS", "ICP-MS")
+
+Long_Name: Full descriptive name (e.g., "Gas chromatography mass spectrometry", "Liquid chromatography tandem mass spectrometry", "Inductively coupled plasma mass spectrometry")
+
+Available protocols include: Not relevant, Not reported, GC-MS, LC-MS, LC-MS/MS, GC-MS/MS, UPLC, ICP-MS, ICP-OES, AAS, XRF, Ion chromatography, Spectrophotometry, Fluorescence, Other
+}
+\seealso{
+Other method: 
+\code{\link{extraction_protocols_vocabulary}()},
+\code{\link{fractionation_protocols_vocabulary}()},
+\code{\link{initialise_methods_tibble}()},
+\code{\link{protocol_categories_vocabulary}()},
+\code{\link{protocol_options_vocabulary}()},
+\code{\link{sampling_protocols_vocabulary}()}
+}
+\concept{method}

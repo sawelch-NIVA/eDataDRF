@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{environ_compartments_vocabulary}
 \alias{environ_compartments_vocabulary}
-\title{Environmental Compartments Controlled Vocabulary}
+\title{Environmental compartments controlled vocabulary}
 \usage{
 environ_compartments_vocabulary()
 }
@@ -10,5 +10,29 @@ environ_compartments_vocabulary()
 A character vector of environmental compartment options
 }
 \description{
-Returns controlled vocabulary options for environmental compartments.
+Returns controlled vocabulary options for broad environmental compartments.
 }
+\details{
+Provides top-level categories for environmental matrices. Options include:
+
+Aquatic
+
+Atmospheric
+
+Terrestrial
+
+Biota
+
+Not relevant
+
+Not reported
+
+Other
+}
+\seealso{
+Other compartment: 
+\code{\link{environ_compartments_sub_vocabulary}()},
+\code{\link{initialise_compartments_tibble}()},
+\code{\link{measured_categories_vocabulary}()}
+}
+\concept{compartment}

@@ -2,13 +2,34 @@
 % Please edit documentation in R/fct_formats.R
 \name{extraction_protocols_vocabulary}
 \alias{extraction_protocols_vocabulary}
-\title{Extraction Protocol Options Vocabulary}
+\title{Extraction protocols controlled vocabulary}
 \usage{
 extraction_protocols_vocabulary()
 }
 \value{
-A tibble with extraction protocol options
+A tibble with Protocol_Type, Short_Name, and Long_Name columns
 }
 \description{
-Returns extraction protocol options as a tibble with Protocol_Type, Short_Name, and Long_Name columns.
+Returns extraction protocol options with short and long names.
 }
+\details{
+Provides standardised extraction method classifications as a tibble with three columns:
+
+Protocol_Type: Always "Extraction Protocol"
+
+Short_Name: Abbreviated protocol name (e.g., "Methanol", "SPE Isolute Env+", "QuEChERS")
+
+Long_Name: Full descriptive name (e.g., "Methanol extraction", "Solid phase extraction with Isolute Env+ cartridge", "Quick easy cheap effective rugged safe extraction")
+
+Available protocols include: Not relevant, Not reported, None, Methanol, Dichloromethane, SPE Isolute Env+, Membrane filtration 0.45um, Membrane filtration 0.2um, Membrane filtration, Filtration, Microwave-assisted acid digestion, Acid digestion, Pressurised liquid, Ultrasonic, Soxhlet, QuEChERS, Accelerated solvent, Sequential extraction, Other
+}
+\seealso{
+Other method: 
+\code{\link{analytical_protocols_vocabulary}()},
+\code{\link{fractionation_protocols_vocabulary}()},
+\code{\link{initialise_methods_tibble}()},
+\code{\link{protocol_categories_vocabulary}()},
+\code{\link{protocol_options_vocabulary}()},
+\code{\link{sampling_protocols_vocabulary}()}
+}
+\concept{method}

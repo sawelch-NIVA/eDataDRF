@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{geographic_features_vocabulary}
 \alias{geographic_features_vocabulary}
-\title{Geographic Features Controlled Vocabulary}
+\title{Geographic features controlled vocabulary}
 \usage{
 geographic_features_vocabulary()
 }
@@ -10,5 +10,59 @@ geographic_features_vocabulary()
 A character vector of geographic feature options
 }
 \description{
-Returns controlled vocabulary options for geographic features.
+Returns controlled vocabulary options for site geographic features.
 }
+\details{
+Provides standardised categories for classifying sampling site locations by their
+primary geographic feature type. Options include:
+
+Not relevant
+
+Not reported
+
+River, stream, canal
+
+Lake, pond, pool, reservoir
+
+Ocean, sea, territorial waters
+
+Coastal, fjord
+
+Estuary
+
+Drainage, sewer, artificial water
+
+Swamp, wetland
+
+Groundwater, aquifer
+
+WWTP
+
+Artificial Land/Urban Areas
+
+Landfills
+
+Cropland
+
+Woodland, forest
+
+Shrubland
+
+Grassland
+
+Bare land and lichen/moss
+
+Glacier
+
+Other
+}
+\seealso{
+Other site: 
+\code{\link{altitude_units_vocabulary}()},
+\code{\link{areas_vocabulary}()},
+\code{\link{coordinate_systems_vocabulary}()},
+\code{\link{countries_vocabulary}()},
+\code{\link{geographic_features_sub_vocabulary}()},
+\code{\link{initialise_sites_tibble}()}
+}
+\concept{site}

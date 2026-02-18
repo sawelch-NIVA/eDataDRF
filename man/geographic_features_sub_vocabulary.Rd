@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{geographic_features_sub_vocabulary}
 \alias{geographic_features_sub_vocabulary}
-\title{Geographic Features Sub Controlled Vocabulary}
+\title{Geographic feature sub-categories controlled vocabulary}
 \usage{
 geographic_features_sub_vocabulary()
 }
@@ -12,3 +12,29 @@ A character vector of geographic feature subcategory options
 \description{
 Returns controlled vocabulary options for geographic feature subcategories.
 }
+\details{
+Provides additional detail for geographic features, particularly for aquatic
+environments. Options include:
+
+Not relevant
+
+Not reported
+
+Water surface
+
+Water column, pelagic zone
+
+Water benthos
+
+Other
+}
+\seealso{
+Other site: 
+\code{\link{altitude_units_vocabulary}()},
+\code{\link{areas_vocabulary}()},
+\code{\link{coordinate_systems_vocabulary}()},
+\code{\link{countries_vocabulary}()},
+\code{\link{geographic_features_vocabulary}()},
+\code{\link{initialise_sites_tibble}()}
+}
+\concept{site}

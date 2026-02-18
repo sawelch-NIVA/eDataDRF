@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{species_groups_vocabulary}
 \alias{species_groups_vocabulary}
-\title{Species Groups Controlled Vocabulary}
+\title{Species groups controlled vocabulary}
 \usage{
 species_groups_vocabulary()
 }
@@ -10,5 +10,53 @@ species_groups_vocabulary()
 A character vector of species group options
 }
 \description{
-Returns controlled vocabulary options for species groups. Taken from EPA ECOTOX db.
+Returns controlled vocabulary options for broad taxonomic groups from EPA ECOTOX database.
 }
+\details{
+Provides high-level taxonomic groupings used in the ECOTOX database. Options include:
+
+All
+
+Algae
+
+Amphibians
+
+Bacteria
+
+Birds
+
+Crustaceans
+
+Ecosystem
+
+Fish
+
+Fungi
+
+Insects/Spiders
+
+Invertebrates
+
+Mammals
+
+Molluscs
+
+Moss/Hornworts
+
+Plants
+
+Reptiles
+
+Worms
+
+Other
+}
+\seealso{
+Other biota: 
+\code{\link{gender_vocabulary}()},
+\code{\link{initialise_biota_tibble}()},
+\code{\link{lifestage_vocabulary}()},
+\code{\link{species_names_vocabulary}()},
+\code{\link{tissue_types_vocabulary}()}
+}
+\concept{biota}

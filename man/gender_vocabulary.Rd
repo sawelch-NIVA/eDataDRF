@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{gender_vocabulary}
 \alias{gender_vocabulary}
-\title{Initialise Gender Controlled Vocabulary}
+\title{Gender controlled vocabulary}
 \usage{
 gender_vocabulary()
 }
@@ -10,5 +10,31 @@ gender_vocabulary()
 A character vector of gender options
 }
 \description{
-Returns controlled vocabulary options for sample species gender.
+Returns controlled vocabulary options for organism sex or gender.
 }
+\details{
+Provides standardised categories for biological sex of sampled organisms. Options include:
+
+Not reported
+
+Not relevant
+
+Male
+
+Female
+
+Mixed
+
+Hermaphrodite
+
+Other
+}
+\seealso{
+Other biota: 
+\code{\link{initialise_biota_tibble}()},
+\code{\link{lifestage_vocabulary}()},
+\code{\link{species_groups_vocabulary}()},
+\code{\link{species_names_vocabulary}()},
+\code{\link{tissue_types_vocabulary}()}
+}
+\concept{biota}

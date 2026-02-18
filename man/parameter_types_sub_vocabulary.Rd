@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{parameter_types_sub_vocabulary}
 \alias{parameter_types_sub_vocabulary}
-\title{Parameter Types Sub Controlled Vocabulary}
+\title{Parameter type sub-categories controlled vocabulary}
 \usage{
 parameter_types_sub_vocabulary()
 }
@@ -12,3 +12,22 @@ A character vector of parameter type subcategory options
 \description{
 Returns controlled vocabulary options for parameter type subcategories.
 }
+\details{
+Provides more specific classifications derived from the dummy parameters dataset.
+The list is dynamically generated from unique PARAMETER_TYPE_SUB values and includes
+options such as:
+
+Mixture
+
+Not reported
+
+All unique sub-types from dummy_parameters_vocabulary() (e.g., Carbon, Inorganic compounds, Organic compounds, etc.)
+}
+\seealso{
+Other parameter: 
+\code{\link{dummy_parameters_vocabulary}()},
+\code{\link{initialise_parameters_tibble}()},
+\code{\link{measured_types_vocabulary}()},
+\code{\link{parameter_types_vocabulary}()}
+}
+\concept{parameter}

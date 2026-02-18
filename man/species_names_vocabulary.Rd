@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{species_names_vocabulary}
 \alias{species_names_vocabulary}
-\title{Species Controlled Vocabulary}
+\title{Species names controlled vocabulary}
 \usage{
 species_names_vocabulary()
 }
@@ -10,5 +10,31 @@ species_names_vocabulary()
 A data frame of species information
 }
 \description{
-Returns species name options from ECOTOX data
+Returns species information from EPA ECOTOX database.
 }
+\details{
+Provides comprehensive species data including common names, scientific names, kingdom,
+and species group classifications. Data is read from ecotox_2025_06_12_species.parquet
+and includes the following columns:
+
+SPECIES_COMMON_NAME: Common or vernacular name
+
+SPECIES_NAME: Scientific (Latin) name
+
+SPECIES_KINGDOM: Taxonomic kingdom (not used in the format)
+
+SPECIES_GROUP: Broad taxonomic grouping
+
+Additional entries for "Other" and "Ecosystem" are included.
+
+Data source: extdata/ecotox_2025_06_12_species.parquet
+}
+\seealso{
+Other biota: 
+\code{\link{gender_vocabulary}()},
+\code{\link{initialise_biota_tibble}()},
+\code{\link{lifestage_vocabulary}()},
+\code{\link{species_groups_vocabulary}()},
+\code{\link{tissue_types_vocabulary}()}
+}
+\concept{biota}

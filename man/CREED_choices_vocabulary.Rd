@@ -2,13 +2,33 @@
 % Please edit documentation in R/fct_formats.R
 \name{CREED_choices_vocabulary}
 \alias{CREED_choices_vocabulary}
-\title{CREED Assessment Scoring Choices}
+\title{CREED assessment scores controlled vocabulary}
 \usage{
 CREED_choices_vocabulary()
 }
 \value{
-Named character vector with CREED scoring choices
+Named character vector with CREED scoring choices and their numeric values
 }
 \description{
-Returns the standardised CREED assessment scoring options
+Returns standardised scoring options for CREED data quality assessment.
 }
+\details{
+Provides the four-level scoring system used in CREED (Criteria for Reporting and
+Evaluating Ecotoxicity Data) assessments. Options include:
+
+Not Met: Score value 4
+
+Fully Met: Score value 1
+
+Partly Met: Score value 2
+
+Not Reported: Score value 3
+
+Not Relevant: Score value 1
+}
+\seealso{
+Other CREED: 
+\code{\link{initialise_CREED_data_tibble}()},
+\code{\link{initialise_CREED_scores_tibble}()}
+}
+\concept{CREED}

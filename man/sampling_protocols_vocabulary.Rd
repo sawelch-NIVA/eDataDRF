@@ -2,13 +2,34 @@
 % Please edit documentation in R/fct_formats.R
 \name{sampling_protocols_vocabulary}
 \alias{sampling_protocols_vocabulary}
-\title{Sampling Protocol Options Vocabulary}
+\title{Sampling protocols controlled vocabulary}
 \usage{
 sampling_protocols_vocabulary()
 }
 \value{
-A tibble with sampling protocol options
+A tibble with Protocol_Type, Short_Name, and Long_Name columns
 }
 \description{
-Returns sampling protocol options as a tibble with Protocol_Type, Short_Name, and Long_Name columns.
+Returns sampling protocol options with short and long names.
 }
+\details{
+Provides standardised sampling method classifications as a tibble with three columns:
+
+Protocol_Type: Always "Sampling Protocol"
+
+Short_Name: Abbreviated protocol name (e.g., "Point", "Composite", "Trawl")
+
+Long_Name: Full descriptive name (e.g., "Point sampling", "Composite sampling", "Trawl sampling")
+
+Available protocols include: Not relevant, Not reported, Point, Composite, Trawl, Grab, Core, Seine net, Electrofishing, Plankton net, Bailer, Peristaltic pump, Active air, Passive air, SPMD, SPE, LVSPE, DGT, Caged organisms, Blood sample, Biopsy, Other
+}
+\seealso{
+Other method: 
+\code{\link{analytical_protocols_vocabulary}()},
+\code{\link{extraction_protocols_vocabulary}()},
+\code{\link{fractionation_protocols_vocabulary}()},
+\code{\link{initialise_methods_tibble}()},
+\code{\link{protocol_categories_vocabulary}()},
+\code{\link{protocol_options_vocabulary}()}
+}
+\concept{method}

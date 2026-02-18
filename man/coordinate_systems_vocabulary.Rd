@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{coordinate_systems_vocabulary}
 \alias{coordinate_systems_vocabulary}
-\title{Coordinate Systems Controlled Vocabulary}
+\title{Coordinate systems controlled vocabulary}
 \usage{
 coordinate_systems_vocabulary()
 }
@@ -10,5 +10,40 @@ coordinate_systems_vocabulary()
 A character vector of coordinate system options
 }
 \description{
-Returns controlled vocabulary options for coordinate systems.
+Returns controlled vocabulary options for spatial coordinate reference systems.
 }
+\details{
+Provides standardised coordinate system identifiers commonly used in environmental
+monitoring. Options include:
+
+Not relevant
+
+Not reported
+
+WGS 84
+
+UTM 32
+
+UTM 33
+
+UTM 34
+
+UTM 35
+
+ETRS89
+
+Other
+
+More CRS will be added as needed. In long term, vocabulary may be replaced entirely for better standisation with
+EPSG and/or PROJ4String.
+}
+\seealso{
+Other site: 
+\code{\link{altitude_units_vocabulary}()},
+\code{\link{areas_vocabulary}()},
+\code{\link{countries_vocabulary}()},
+\code{\link{geographic_features_sub_vocabulary}()},
+\code{\link{geographic_features_vocabulary}()},
+\code{\link{initialise_sites_tibble}()}
+}
+\concept{site}

@@ -2,13 +2,37 @@
 % Please edit documentation in R/fct_formats.R
 \name{dummy_parameters_vocabulary}
 \alias{dummy_parameters_vocabulary}
-\title{Dummy Parameters Data}
+\title{Dummy parameters controlled vocabulary}
 \usage{
 dummy_parameters_vocabulary()
 }
 \value{
-A data frame of dummy parameter data
+A data frame combining quality and chemical parameter data
 }
 \description{
-Returns dummy parameter data combining quality parameters and chemical parameters.
+Returns comprehensive parameter data combining quality parameters and chemical parameters.
 }
+\details{
+Combines quality parameters with chemical parameters from the ClassyFire taxonomy.
+Quality parameters are read from dummy_quality_parameters.parquet and chemical
+parameters from ClassyFire_Taxonomy_2025_02.parquet. The resulting dataset includes
+columns for parameter classification, chemical identifiers (InChIKey, PubChem CID,
+CAS RN), and measurement types.
+
+Note: Quality parameters are currently "dummy" data as a comprehensive validated
+list has not yet been compiled.
+
+Data sources:
+
+extdata/dummy_quality_parameters.parquet
+
+extdata/ClassyFire_Taxonomy_2025_02.parquet
+}
+\seealso{
+Other parameter: 
+\code{\link{initialise_parameters_tibble}()},
+\code{\link{measured_types_vocabulary}()},
+\code{\link{parameter_types_sub_vocabulary}()},
+\code{\link{parameter_types_vocabulary}()}
+}
+\concept{parameter}

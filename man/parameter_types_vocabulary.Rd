@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{parameter_types_vocabulary}
 \alias{parameter_types_vocabulary}
-\title{Parameter Types Controlled Vocabulary}
+\title{Parameter types controlled vocabulary}
 \usage{
 parameter_types_vocabulary()
 }
@@ -10,5 +10,30 @@ parameter_types_vocabulary()
 A character vector of parameter type options
 }
 \description{
-Returns controlled vocabulary options for parameter types.
+Returns controlled vocabulary options for broad parameter classifications.
 }
+\details{
+Provides high-level categories for classifying measured parameters. Options include:
+
+Not relevant
+
+Stressor
+
+Quality parameter
+
+Normalisation
+
+Background
+
+Ecological Indicator
+
+Other
+}
+\seealso{
+Other parameter: 
+\code{\link{dummy_parameters_vocabulary}()},
+\code{\link{initialise_parameters_tibble}()},
+\code{\link{measured_types_vocabulary}()},
+\code{\link{parameter_types_sub_vocabulary}()}
+}
+\concept{parameter}

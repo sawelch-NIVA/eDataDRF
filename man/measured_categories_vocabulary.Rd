@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{measured_categories_vocabulary}
 \alias{measured_categories_vocabulary}
-\title{Measured Categories Controlled Vocabulary}
+\title{Measured categories controlled vocabulary}
 \usage{
 measured_categories_vocabulary()
 }
@@ -10,5 +10,30 @@ measured_categories_vocabulary()
 A character vector of measured category options
 }
 \description{
-Returns controlled vocabulary options for measured categories.
+Returns controlled vocabulary options for measurement context categories.
 }
+\details{
+Provides standardised categories indicating where measurements were taken relative
+to organisms. Options include:
+
+External: External Media
+
+Internal: Internal to Organism
+
+Surface: Surface of Organism
+}
+\seealso{
+Other compartment: 
+\code{\link{environ_compartments_sub_vocabulary}()},
+\code{\link{environ_compartments_vocabulary}()},
+\code{\link{initialise_compartments_tibble}()}
+
+Other measurement: 
+\code{\link{initialise_measurements_tibble}()},
+\code{\link{measured_flags_vocabulary}()},
+\code{\link{measured_types_vocabulary}()},
+\code{\link{parameter_unit_vocabulary}()},
+\code{\link{uncertainty_types_vocabulary}()}
+}
+\concept{compartment}
+\concept{measurement}

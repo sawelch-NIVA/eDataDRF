@@ -1,4 +1,4 @@
-# tests/testthat/test-utils.R ----
+# tests/testthat/fct_generate_IDs.R ----
 
 # Test abbreviate_string ----
 
@@ -13,7 +13,7 @@ test_that("abbreviate_string works with all case options", {
 
   expect_equal(abbreviate_string(input, 3L, "lower"), "dogsandcats")
   expect_equal(abbreviate_string(input, 3L, "upper"), "DOGSANDCATS")
-  expect_equal(abbreviate_string(input, 3L, "sentence"), "Dogsandcats")
+  expect_equal(abbreviate_string(input, 3L, "sentence"), "Dogs And Cats")
   expect_equal(abbreviate_string(input, 3L, "snake"), "dogs_and_cats")
   expect_equal(abbreviate_string(input, 3L, "title"), "DogsAndCats")
   expect_equal(abbreviate_string(input, 3L, "screamingsnake"), "DOGS_AND_CATS")

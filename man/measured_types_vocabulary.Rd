@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{measured_types_vocabulary}
 \alias{measured_types_vocabulary}
-\title{Measured Types Controlled Vocabulary}
+\title{Measured types controlled vocabulary}
 \usage{
 measured_types_vocabulary()
 }
@@ -10,5 +10,51 @@ measured_types_vocabulary()
 A character vector of measured type options
 }
 \description{
-Returns controlled vocabulary options for measured types.
+Returns controlled vocabulary options for types of measurements.
 }
+\details{
+Provides standardised categories for the nature of measurements being recorded.
+Options include:
+
+Concentration
+
+Dose rate
+
+Dose
+
+Physical parameter
+
+Amount
+
+Volume
+
+Fraction of total
+
+Percent
+
+Irradiance
+
+Response
+
+Ecological Indicator
+
+Not relevant
+
+Other
+}
+\seealso{
+Other parameter: 
+\code{\link{dummy_parameters_vocabulary}()},
+\code{\link{initialise_parameters_tibble}()},
+\code{\link{parameter_types_sub_vocabulary}()},
+\code{\link{parameter_types_vocabulary}()}
+
+Other measurement: 
+\code{\link{initialise_measurements_tibble}()},
+\code{\link{measured_categories_vocabulary}()},
+\code{\link{measured_flags_vocabulary}()},
+\code{\link{parameter_unit_vocabulary}()},
+\code{\link{uncertainty_types_vocabulary}()}
+}
+\concept{measurement}
+\concept{parameter}

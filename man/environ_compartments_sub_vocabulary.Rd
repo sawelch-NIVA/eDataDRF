@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{environ_compartments_sub_vocabulary}
 \alias{environ_compartments_sub_vocabulary}
-\title{Sub-compartment Options Mapping}
+\title{Environmental compartment sub-categories controlled vocabulary}
 \usage{
 environ_compartments_sub_vocabulary()
 }
@@ -12,3 +12,22 @@ A named list of character vectors with sub-compartment options for each main com
 \description{
 Returns controlled vocabulary mapping for environmental sub-compartments organized by main compartment.
 }
+\details{
+Provides a hierarchical structure of environmental sub-compartments grouped by their
+main compartment type. The list includes:
+
+Aquatic: Freshwater, Marine/Salt Water, Brackish/Transitional Water, Groundwater, Wastewater, Liquid Growth Medium, Rainwater, Stormwater, Leachate, Aquatic Sediment, Porewater, Sludge, Snow/Ice
+
+Atmospheric: Indoor Air, Outdoor Air
+
+Terrestrial: Terrestrial Biological Residue, Soil H Horizon (Peat), Soil O Horizon (Organic), Soil A Horizon (Topsoil), Soil E Horizon (Mineral), Soil S Horizon (Mineral), Soil C Horizon (Parent Material), Soil R Horizon (Bedrock)
+
+Biota: Biota, Terrestrial, Biota, Aquatic, Biota, Atmospheric, Biota, Other
+}
+\seealso{
+Other compartment: 
+\code{\link{environ_compartments_vocabulary}()},
+\code{\link{initialise_compartments_tibble}()},
+\code{\link{measured_categories_vocabulary}()}
+}
+\concept{compartment}

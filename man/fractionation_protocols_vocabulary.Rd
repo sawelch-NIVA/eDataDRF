@@ -2,13 +2,34 @@
 % Please edit documentation in R/fct_formats.R
 \name{fractionation_protocols_vocabulary}
 \alias{fractionation_protocols_vocabulary}
-\title{Fractionation Protocol Options Vocabulary}
+\title{Fractionation protocols controlled vocabulary}
 \usage{
 fractionation_protocols_vocabulary()
 }
 \value{
-A tibble with fractionation protocol options
+A tibble with Protocol_Type, Short_Name, and Long_Name columns
 }
 \description{
-Returns fractionation protocol options as a tibble with Protocol_Type, Short_Name, and Long_Name columns.
+Returns fractionation protocol options with short and long names.
 }
+\details{
+Provides standardised fractionation method classifications as a tibble with three columns:
+
+Protocol_Type: Always "Fractionation Protocol"
+
+Short_Name: Abbreviated protocol name (e.g., "Total", "Dissolved", "Filtered")
+
+Long_Name: Full descriptive name (e.g., "Total fraction", "Dissolved fraction", "Filtered fraction")
+
+Available protocols include: Not relevant, Not reported, Total, Particles, Colloidal, LMM, Aqueous, Filtered 0.45um, Filtered 0.2um, Dissolved, Filtered, Acid extractable, Reducible, Oxidisable, Residual, Bioavailable, Free ion, Size fractionated, Other
+}
+\seealso{
+Other method: 
+\code{\link{analytical_protocols_vocabulary}()},
+\code{\link{extraction_protocols_vocabulary}()},
+\code{\link{initialise_methods_tibble}()},
+\code{\link{protocol_categories_vocabulary}()},
+\code{\link{protocol_options_vocabulary}()},
+\code{\link{sampling_protocols_vocabulary}()}
+}
+\concept{method}

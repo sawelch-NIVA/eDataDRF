@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{altitude_units_vocabulary}
 \alias{altitude_units_vocabulary}
-\title{Altitude Units Controlled Vocabulary}
+\title{Altitude units controlled vocabulary}
 \usage{
 altitude_units_vocabulary()
 }
@@ -10,5 +10,26 @@ altitude_units_vocabulary()
 A character vector of altitude unit options
 }
 \description{
-Returns controlled vocabulary options for altitude units.
+Returns controlled vocabulary options for altitude measurement units.
 }
+\details{
+Provides standardised units for expressing elevation or depth values. Options include:
+
+km
+
+m
+
+cm
+
+mm
+}
+\seealso{
+Other site: 
+\code{\link{areas_vocabulary}()},
+\code{\link{coordinate_systems_vocabulary}()},
+\code{\link{countries_vocabulary}()},
+\code{\link{geographic_features_sub_vocabulary}()},
+\code{\link{geographic_features_vocabulary}()},
+\code{\link{initialise_sites_tibble}()}
+}
+\concept{site}

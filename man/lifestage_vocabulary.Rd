@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{lifestage_vocabulary}
 \alias{lifestage_vocabulary}
-\title{Initialise Life Stages Controlled Vocabulary}
+\title{Life stages controlled vocabulary}
 \usage{
 lifestage_vocabulary()
 }
@@ -10,5 +10,42 @@ lifestage_vocabulary()
 A character vector of life stage options
 }
 \description{
-Returns controlled vocabulary options for sample species life stages.
+Returns controlled vocabulary options for organism life stages.
 }
+\details{
+Provides standardised categories for developmental stages of sampled organisms.
+Options include:
+
+Not reported
+
+Not relevant
+
+Adult
+
+Juvenile
+
+Larva
+
+Embryo
+
+Egg
+
+Seedling
+
+Mature
+
+Young
+
+Mixed
+
+Other
+}
+\seealso{
+Other biota: 
+\code{\link{gender_vocabulary}()},
+\code{\link{initialise_biota_tibble}()},
+\code{\link{species_groups_vocabulary}()},
+\code{\link{species_names_vocabulary}()},
+\code{\link{tissue_types_vocabulary}()}
+}
+\concept{biota}

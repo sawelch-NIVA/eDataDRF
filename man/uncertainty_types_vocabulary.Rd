@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{uncertainty_types_vocabulary}
 \alias{uncertainty_types_vocabulary}
-\title{Uncertainty Types Controlled Vocabulary}
+\title{Uncertainty types controlled vocabulary}
 \usage{
 uncertainty_types_vocabulary()
 }
@@ -10,6 +10,68 @@ uncertainty_types_vocabulary()
 A character vector of uncertainty type options
 }
 \description{
-Returns controlled vocabulary options for uncertainty types commonly found
-in scientific literature and databases.
+Returns controlled vocabulary options for statistical uncertainty and variability measures.
 }
+\details{
+Provides standardised categories for expressing measurement uncertainty commonly found
+in scientific literature and databases. Options include:
+
+Not Reported
+
+Not Relevant
+
+Arithmetic Mean
+
+Geometric Mean
+
+Standard Deviation
+
+Standard Error
+
+95\% Confidence Interval
+
+90\% Confidence Interval
+
+99\% Confidence Interval
+
+Min-Max Range
+
+Interquartile Range (Q1-Q3)
+
+10th-90th Percentile
+
+5th-95th Percentile
+
+Coefficient of Variation (\%)
+
+Median Absolute Deviation
+
+First-Third Quartile Range
+
+Minimum-Maximum
+
+Variance
+
+Standard Error of Mean
+
+Relative Standard Deviation (\%)
+
+95\% Credible Interval
+
+95\% Prediction Interval
+
+95\% Tolerance Interval
+
+95\% Bootstrap CI
+
+Other
+}
+\seealso{
+Other measurement: 
+\code{\link{initialise_measurements_tibble}()},
+\code{\link{measured_categories_vocabulary}()},
+\code{\link{measured_flags_vocabulary}()},
+\code{\link{measured_types_vocabulary}()},
+\code{\link{parameter_unit_vocabulary}()}
+}
+\concept{measurement}

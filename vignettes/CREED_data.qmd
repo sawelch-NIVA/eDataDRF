@@ -1,0 +1,56 @@
+---
+title: "CREED_data"
+vignette: >
+  %\VignetteIndexEntry{CREED_data}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+# Introduction
+
+```{r}
+#| label: setup
+library(eDataDRF)
+```
+
+```{r}
+#| label: initialise
+
+initialise_CREED_data_tibble()
+```
+
+## Variables
+
+# Criterion ID - String, free, mandatory
+`criterion_id`
+
+<!-- Unique identifier for the CREED criterion. -->
+
+# Criterion Title - String, free, mandatory
+`criterion_title`
+
+<!-- Descriptive title of the criterion. -->
+
+# Required Recommended - String, free, mandatory
+`required_recommended`
+
+<!-- Whether the criterion is required or recommended. -->
+
+# Relevant Data - String, free, mandatory
+`relevant_data`
+
+<!-- Data or information relevant to assessing the criterion. -->
+
+# Score - String, free, mandatory
+`score`
+
+<!-- Assessment score for the criterion. -->
+
+# Limitations - String, free, mandatory
+`limitations`
+
+<!-- Identified limitations or concerns for the criterion. -->

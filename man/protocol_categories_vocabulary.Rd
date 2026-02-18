@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{protocol_categories_vocabulary}
 \alias{protocol_categories_vocabulary}
-\title{Protocol Categories Controlled Vocabulary}
+\title{Protocol categories controlled vocabulary}
 \usage{
 protocol_categories_vocabulary()
 }
@@ -10,5 +10,27 @@ protocol_categories_vocabulary()
 A character vector of protocol category options
 }
 \description{
-Returns controlled vocabulary options for protocol categories.
+Returns controlled vocabulary options for protocol type classifications.
 }
+\details{
+Provides the four main protocol category classifications used in the methods table.
+Options include:
+
+Sampling Protocol
+
+Fractionation Protocol
+
+Extraction Protocol
+
+Analytical Protocol
+}
+\seealso{
+Other method: 
+\code{\link{analytical_protocols_vocabulary}()},
+\code{\link{extraction_protocols_vocabulary}()},
+\code{\link{fractionation_protocols_vocabulary}()},
+\code{\link{initialise_methods_tibble}()},
+\code{\link{protocol_options_vocabulary}()},
+\code{\link{sampling_protocols_vocabulary}()}
+}
+\concept{method}

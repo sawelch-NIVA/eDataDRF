@@ -1,5 +1,5 @@
 Package: eDataDRF
-Title: Data reporting format for STOP's exposure data format.
+Title: Data reporting format for STOP's exposure data format
 Version: 0.0.0.9000
 Authors@R: 
     person("Sam A.", "Welch", , "sam.welch@niva.no", role = c("aut", "cre"))
@@ -18,5 +18,11 @@ Imports:
     tibble,
     zip
 Suggests: 
+    knitr,
+    quarto,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Config/testthat/parallel: true
+URL: https://NIVANorge.github.io/eDataDRF/, https://github.com/NIVANorge/eDataDRF
+VignetteBuilder: quarto, knitr

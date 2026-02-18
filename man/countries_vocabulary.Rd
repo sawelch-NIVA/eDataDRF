@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{countries_vocabulary}
 \alias{countries_vocabulary}
-\title{Countries Controlled Vocabulary}
+\title{Countries controlled vocabulary}
 \usage{
 countries_vocabulary()
 }
@@ -10,5 +10,25 @@ countries_vocabulary()
 A character vector of country options
 }
 \description{
-Returns controlled vocabulary options for countries.
+Returns controlled vocabulary options for country names based on ISO 3166-1 standard.
 }
+\details{
+Provides country names from the \link[ISOcodes]{ISO_3166_1} standard, with additional
+options for data quality flags. Complete list includes:
+
+Not relevant
+
+Not reported
+
+All ISO 3166-1 country names (e.g., Afghanistan, Albania, Algeria, ...)
+}
+\seealso{
+Other site: 
+\code{\link{altitude_units_vocabulary}()},
+\code{\link{areas_vocabulary}()},
+\code{\link{coordinate_systems_vocabulary}()},
+\code{\link{geographic_features_sub_vocabulary}()},
+\code{\link{geographic_features_vocabulary}()},
+\code{\link{initialise_sites_tibble}()}
+}
+\concept{site}

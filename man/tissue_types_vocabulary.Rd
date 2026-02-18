@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_formats.R
 \name{tissue_types_vocabulary}
 \alias{tissue_types_vocabulary}
-\title{Initialise Tissue Types Controlled Vocabulary}
+\title{Tissue types controlled vocabulary}
 \usage{
 tissue_types_vocabulary()
 }
@@ -10,5 +10,80 @@ tissue_types_vocabulary()
 A character vector of tissue type options
 }
 \description{
-Returns controlled vocabulary options for sample tissue types.
+Returns controlled vocabulary options for biological tissue types.
 }
+\details{
+Provides standardised categories for biological tissues sampled from organisms.
+Options include:
+
+Not reported
+
+Not relevant
+
+Whole body
+
+Total soft tissues
+
+Muscle
+
+Liver
+
+Kidney
+
+Fat/Adipose
+
+Skin
+
+Bone
+
+Pyloric caeca
+
+Body wall
+
+Brain
+
+Heart
+
+Lung
+
+Gill
+
+Gonad
+
+Shell
+
+Carapace
+
+Digestive Gland
+
+Mantle
+
+Blood
+
+Egg
+
+Larva
+
+Leaf
+
+Root
+
+Stem
+
+Fruit
+
+Seed
+
+Other
+
+In future, this will be standardised with the BRENDA and/or Uberon tissue ontologies.
+}
+\seealso{
+Other biota: 
+\code{\link{gender_vocabulary}()},
+\code{\link{initialise_biota_tibble}()},
+\code{\link{lifestage_vocabulary}()},
+\code{\link{species_groups_vocabulary}()},
+\code{\link{species_names_vocabulary}()}
+}
+\concept{biota}

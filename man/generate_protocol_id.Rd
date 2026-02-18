@@ -2,7 +2,8 @@
 % Please edit documentation in R/fct_generate_IDs.R
 \name{generate_protocol_id}
 \alias{generate_protocol_id}
-\title{Generate Protocol ID ----}
+\title{Generate a semi-unique string ID for a protocol based on its type,
+name, the campaign name, and a sequence number}
 \usage{
 generate_protocol_id(
   protocol_type,
@@ -27,7 +28,7 @@ Will be abbreviated to first 10 alphanumeric characters. Defaults to "".}
 }
 \value{
 Character vector of protocol IDs with format:
-\verb{\{TypeCode\}\{SequenceNumber\}_\{AbbreviatedName\}_\{CampaignAbbrev\}}
+\code{TypeCodeSequenceNumber_AbbreviatedName_CampaignAbbrev}
 
 Where:
 \itemize{
