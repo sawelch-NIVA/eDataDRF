@@ -10,7 +10,71 @@ knitr:
     comment: '#>'
 ---
 
+# Introduction
+
+The parameters table collects information on stressors, quality parameters, and any other scalar properties measured in the context of adverse environmental effect. 
+
 ```{r}
 #| label: setup
 library(eDataDRF)
 ```
+
+```{r}
+#| label: initialise
+
+initialise_parameters_tibble()
+```
+
+It is expected that most relevant studies will be collecting data on chemical pollutants in the environment. Non-chemicals are accomodated by the format, but they cannot necessarily be as well-characterised as chemicals, where we are able to take advantage of the high-quality infrastructure developed by chemists. 
+
+## Variables
+
+# Parameter Type - String, controlled, mandatory
+`PARAMETER_TYPE`
+
+Parameter type is divided into five classifications and two "wastebasket" categories. This classification requires a degree of subjective judgement. What makes a chemical a stressor versus a quality parameter is not always clear. However, we anticipate that in most cases this will be uncontroversial. Where this is not the case stressors can still be identified by name/id.
+
+```{r}
+#| label: parameter_type
+
+parameter_types_vocabulary()
+```
+
+## Controlled Vocabulary
+
+`"Not relevant"` -  Use when a type is not applicable to the measured scalar.
+`"Stressor"` - hemical, physical or biological agent causing stress.
+`"Quality parameter"` - Standard water/environmental quality parameter
+`"Normalisation"` - Parameter used for normalising other measurements        
+`"Background"` - "Natural background level of a parameter"          
+`"Ecological Indicator"` - Parameter is an indicator or metric of ecological concern.
+`"Other"` - Parameter belongs to another category
+
+# Parameter Sub-type - String, controlled, mandatory
+`PARAMETER_TYPE_SUB`
+
+Subdivision of Parameter Type, largely chemical classifications, based on ClassyFire plus some quality stuff
+
+- Add "not relevant"
+- Reorg so that it's alphabetical but other/not rel are in sensible places
+- Add a sub-level for the above?
+
+```{r}
+#| label: parameter_sub_type
+
+parameter_types_sub_vocabulary()
+```
+
+## Controlled Vocabulary
+
+- Will do with code, I guess. 
+
+# Parameter Name
+`PARAMETER_NAME`
+
+- Typically the common short form name of a parameter, but...
+- We use whatever ClassyFire gives us, I think
+- Currently used as a primary key - this will be replaced with a better system once we get it working
+
+# Parameter Sub-Name
+`PARAMETER_NAME_SUB`

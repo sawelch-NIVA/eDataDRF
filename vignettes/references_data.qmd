@@ -14,3 +14,10 @@ knitr:
 #| label: setup
 library(eDataDRF)
 ```
+
+
+```{r}
+initialise_references_tibble()
+
+reference_character_limits()
+```
