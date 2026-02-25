@@ -10,7 +10,8 @@
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Data reporting format for STOP's exposure data format">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="Data reporting format for STOP's exposure data format">
 <meta name="description" content="Functions for data for STOP's eData format.">
 <meta property="og:description" content="Functions for data for STOP's eData format.">
 </head>
@@ -32,22 +33,7 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/biota_data.html">biota_data</a></li>
-    <li><a class="dropdown-item" href="articles/campaign_data.html">campaign_data</a></li>
-    <li><a class="dropdown-item" href="articles/compartments_data.html">compartments_data</a></li>
-    <li><a class="dropdown-item" href="articles/CREED_data.html">CREED_data</a></li>
-    <li><a class="dropdown-item" href="articles/CREED_scores_data.html">CREED_scores_data</a></li>
-    <li><a class="dropdown-item" href="articles/measurements_data.html">Measurements Table</a></li>
-    <li><a class="dropdown-item" href="articles/methods_data.html">Methods table</a></li>
-    <li><a class="dropdown-item" href="articles/parameters_data.html">parameters_data</a></li>
-    <li><a class="dropdown-item" href="articles/references_data.html">references_data</a></li>
-    <li><a class="dropdown-item" href="articles/samples_data.html">samples_data</a></li>
-    <li><a class="dropdown-item" href="articles/sites_data.html">sites_data</a></li>
-  </ul>
-</li>
+<li class="nav-item"><a class="nav-link" href="articles/index.html">Articles</a></li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -68,12 +54,120 @@
 <p>The eData Data Reporting Format is a format for the standardisation of data on pollutant occurence in the environment. By converting this data to a single, consistent format, it makes it easier to validate, compare, analyse, and reuse, in line with the <a href="https://www.go-fair.org/fair-principles/" class="external-link">FAIR principles</a></p>
 <p>These data are typically published as concentrations (in water) or mass ratios (in soil, sludge and biota). Fully interpreting these measurements requires considerable metadata, relating to the time, place, conditions, methodology, and context of sampling. However, no single standard exists for these metadata, and study authors and sampling teams tend to use a variety of inconsistent definitions, units, and schema depending on their scientific domain and the study’s individual needs.</p>
 <p>This is not, in itself a problem. However, as environmental risk assessment becomes more data-based and larger scale, the need to use and re-use large quantities of data increases. When these datasets are consistent, validated, and interoperable, much time can be saved. When they are not, researchers much go through the tedious process of understanding, validating and remapping by hand; an often non-reproducible process. Thus a harmonised format - and associated validation and formatting functions - can represent a significant timesaver for anyone in such as position.</p>
-<p>This format is a (first) attempt to address this issue. Rather than attempt a perfect format that covers all relevant domains, we have elected to focus on pollutants in water, aquatic biota, and similar compartments (sludge, aquatic sediment, etc.).</p>
+<p>This format is a (first) attempt to address this issue. Rather than attempt a perfect format that covers all relevant domains, we have elected to focus on pollutants in water, aquatic biota, and similar compartments (sludge, aquatic sediment, etc.). This has been designed to follow a database-like structure, with the expectation that the format will be developed into a full database schema in the future.</p>
+<div class="section level2">
+<h2 id="tables">Tables<a class="anchor" aria-label="anchor" href="#tables"></a>
+</h2>
+<p>Tables are created as <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble::tibble()</a></code> calls with empty variables of specific types (e.g. <code>character(0)</code> for strings). These support easier validation (see <a href="https://NIVANorge.github.io/eDataDRF/articles/validation.html">Validation</a>) and the extensive Tidyverse family of functions.</p>
+<p>Tables are listed below:</p>
+<table class="table">
+<caption>Table of tables in the eData format, their purpose, and comments.</caption>
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Table Name</th>
+<th>Purpose</th>
+<th>Comments</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/campaign_data.html">Campaign</a></td>
+<td>Records data about sampling campaign and organisation collecting data.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/references_data.html">Reference</a></td>
+<td>Records conventional publication metadata, where available</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/sites_data.html">Sites</a></td>
+<td>Records site coordinates, land use, country/ocean</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/parameters_data.html">Parameters</a></td>
+<td>Records data on stressors (chemical, radiation, etc.), quality measurements</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/compartments_data.html">Compartments</a></td>
+<td>Records information on the compartment/matrix sampled</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/samples_data.html">Samples</a></td>
+<td>Records which combinations of dates, sites, parameters and compartments were sampled</td>
+<td>Not used in final analysis, but exists as an intermediate table used to create measurements</td>
+</tr>
+<tr class="odd">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/biota_data.html">Biota</a></td>
+<td>Where relevant, records biota species, tissue, life stage, and gender</td>
+<td>Optional</td>
+</tr>
+<tr class="even">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/methods_data.html">Methods</a></td>
+<td>Records type and descriptions of methods used for sampling, extraction, fractionation and analysis</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/measurements_data.html">Measurements</a></td>
+<td>Records measured values, units, uncertainty, sample size, and methods associated with a given sample</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/CREED_data.html">CREED (quality)</a></td>
+<td>Records assessment purpose statement, relevant data summarised from above tables, relevance/reliability scores, and final assessment of data quality.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://NIVANorge.github.io/eDataDRF/articles/CREED_scores_data.html">CREED Scores</a></td>
+<td>[description needed]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>erDiagram
+    Campaign ||--o{ Measurements : "Belongs"
+    Campaign ||--o{ References : "Belongs"
+    Campaign ||--o{ Sites : "Belongs"
+    Campaign ||--o{ Methods : "Belongs"
+    Campaign ||--o{ CREED : "Assesses"
+
+    References ||--o{ Measurements : "Cites"
+    Sites ||--o{ Measurements : "Locates"
+    Parameters ||--o{ Measurements : "Quantifies"
+    Methods ||--o{ Measurements : "Means"
+
+    Measurements {
+    }
+
+    Campaign {
+    }
+
+    References {
+    }
+
+    Sites {
+    }
+
+    Parameters {
+    }
+
+    Methods {
+    }
+
+    CREED {
+    }</code></pre>
 <ul>
 <li>Caveats</li>
 <li>Links</li>
 <li>Vignettes</li>
 </ul>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>

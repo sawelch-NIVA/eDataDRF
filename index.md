@@ -28,7 +28,71 @@ timesaver for anyone in such as position.
 This format is a (first) attempt to address this issue. Rather than
 attempt a perfect format that covers all relevant domains, we have
 elected to focus on pollutants in water, aquatic biota, and similar
-compartments (sludge, aquatic sediment, etc.).
+compartments (sludge, aquatic sediment, etc.). This has been designed to
+follow a database-like structure, with the expectation that the format
+will be developed into a full database schema in the future.
+
+## Tables
+
+Tables are created as
+[`tibble::tibble()`](https://tibble.tidyverse.org/reference/tibble.html)
+calls with empty variables of specific types (e.g. `character(0)` for
+strings). These support easier validation (see
+[Validation](https://NIVANorge.github.io/eDataDRF/articles/validation.html))
+and the extensive Tidyverse family of functions.
+
+Tables are listed below:
+
+| Table Name                                                                           | Purpose                                                                                                                                               | Comments                                                                                    |
+|--------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| [Campaign](https://NIVANorge.github.io/eDataDRF/articles/campaign_data.html)         | Records data about sampling campaign and organisation collecting data.                                                                                |                                                                                             |
+| [Reference](https://NIVANorge.github.io/eDataDRF/articles/references_data.html)      | Records conventional publication metadata, where available                                                                                            |                                                                                             |
+| [Sites](https://NIVANorge.github.io/eDataDRF/articles/sites_data.html)               | Records site coordinates, land use, country/ocean                                                                                                     |                                                                                             |
+| [Parameters](https://NIVANorge.github.io/eDataDRF/articles/parameters_data.html)     | Records data on stressors (chemical, radiation, etc.), quality measurements                                                                           |                                                                                             |
+| [Compartments](https://NIVANorge.github.io/eDataDRF/articles/compartments_data.html) | Records information on the compartment/matrix sampled                                                                                                 |                                                                                             |
+| [Samples](https://NIVANorge.github.io/eDataDRF/articles/samples_data.html)           | Records which combinations of dates, sites, parameters and compartments were sampled                                                                  | Not used in final analysis, but exists as an intermediate table used to create measurements |
+| [Biota](https://NIVANorge.github.io/eDataDRF/articles/biota_data.html)               | Where relevant, records biota species, tissue, life stage, and gender                                                                                 | Optional                                                                                    |
+| [Methods](https://NIVANorge.github.io/eDataDRF/articles/methods_data.html)           | Records type and descriptions of methods used for sampling, extraction, fractionation and analysis                                                    |                                                                                             |
+| [Measurements](https://NIVANorge.github.io/eDataDRF/articles/measurements_data.html) | Records measured values, units, uncertainty, sample size, and methods associated with a given sample                                                  |                                                                                             |
+| [CREED (quality)](https://NIVANorge.github.io/eDataDRF/articles/CREED_data.html)     | Records assessment purpose statement, relevant data summarised from above tables, relevance/reliability scores, and final assessment of data quality. |                                                                                             |
+| [CREED Scores](https://NIVANorge.github.io/eDataDRF/articles/CREED_scores_data.html) | \[description needed\]                                                                                                                                |                                                                                             |
+
+Table of tables in the eData format, their purpose, and comments.
+
+``` mermaid
+erDiagram
+    Campaign ||--o{ Measurements : "Belongs"
+    Campaign ||--o{ References : "Belongs"
+    Campaign ||--o{ Sites : "Belongs"
+    Campaign ||--o{ Methods : "Belongs"
+    Campaign ||--o{ CREED : "Assesses"
+
+    References ||--o{ Measurements : "Cites"
+    Sites ||--o{ Measurements : "Locates"
+    Parameters ||--o{ Measurements : "Quantifies"
+    Methods ||--o{ Measurements : "Means"
+
+    Measurements {
+    }
+
+    Campaign {
+    }
+
+    References {
+    }
+
+    Sites {
+    }
+
+    Parameters {
+    }
+
+    Methods {
+    }
+
+    CREED {
+    }
+```
 
 - Caveats
 - Links

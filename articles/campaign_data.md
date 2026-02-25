@@ -1,10 +1,13 @@
-# campaign_data
+# Campaign data
 
 ## Introduction
 
 **Campaign data** is intended to track social and institutional factors
 behind a sample that are not otherwise captured by citations/references.
-It’s a mess, and includes a bunch of fields that it probably shouldn’t.
+Routine environmental monitoring is frequently conducted by private and
+public sector authorities, but may not have any formal academic
+literature metadata (see
+[References](https://NIVANorge.github.io/eDataDRF/articles/references_data.md)).
 
 ``` r
 library(eDataDRF)
@@ -18,36 +21,64 @@ initialise_campaign_tibble()
 #> #   ENTERED_BY <chr>, ENTERED_DATE <date>, CAMPAIGN_COMMENT <chr>
 ```
 
-### Variables
+## Variables
 
-## Campaign Name Short - String, free, mandatory
+### Campaign Name Short - String, free (\>= 40 characters), mandatory
 
 `CAMPAIGN_NAME_SHORT`
 
-## Campaign Name - String, free, mandatory
+A short, terse identifier for the campaign. This is used as a primary
+key for Campaign data and a foreign key in [Measurements
+data](https://NIVANorge.github.io/eDataDRF/articles/measurements_data.md)
+and [Methods
+data](https://NIVANorge.github.io/eDataDRF/articles/methods_data.md). No
+format is enforced beyond the character limit, but it is rcommended to
+use PascalCase to maximise character efficiency and readability.
+
+### Campaign Name - String, free, mandatory
 
 `CAMPAIGN_NAME`
 
-## Campaign Start Date - Date, free, mandatory
+Hey, this actually has a character limit. Who knew!
+
+### Campaign Start Date - Date (ISO), free, mandatory
 
 `CAMPAIGN_START_DATE`
 
-## Campaign End Date - Date, free, optional
+The date when a sampling campaign began; the first reported sampling
+date. In rare cases reference objects may not report this. In such
+cases, record an approximate date and note the issue in [Campaign
+Comments](#campaign-comment---string-free-optional).
+
+### Campaign End Date - Date (ISO), free, optional
 
 `CAMPAIGN_END_DATE`
 
-## Organisation - String, free, mandatory
+If avaiable, the last sampling date of the campaign.
+
+### Organisation - String, free, mandatory
 
 `ORGANISATION`
 
-## Entered By - String, free, mandatory
+The primary organisation responsible for conducting the campaign. In the
+case of academic publications, this is typically the lead author’s
+primary employer.
+
+### Entered By - String, free, mandatory
 
 `ENTERED_BY`
 
-## Entered Date - Date, free, mandatory
+The name or email address of the user entering data.
+
+### Entered Date - Date (ISO), free, mandatory
 
 `ENTERED_DATE`
 
-## Campaign Comment - String, free, optional
+The date that campaign data were entered.
+
+### Campaign Comment - String, free, optional
 
 `CAMPAIGN_COMMENT`
+
+Space for the recording of any additional notes or comments about the
+campaign deemed relevant.
