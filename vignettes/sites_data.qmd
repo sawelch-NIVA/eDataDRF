@@ -1,5 +1,6 @@
 ---
-title: "sites_data"
+title: "Sites data"
+subtitle: "Records site coordinates, land use, country/ocean"
 vignette: >
   %\VignetteIndexEntry{sites_data}
   %\VignetteEngine{quarto::html}
@@ -12,6 +13,10 @@ knitr:
 
 # Introduction
 
+Sites data captures information about the coordinates, land use, and administrative/geographical boundaries of sampling sites. In this format, we make the distinction between the sampled site - a fixed, physical point in space - and the [compartment](compartments_data.html) - the type of medium sampled.
+
+Sampling sites are often reported in a variety of more-or-less FAIR formats, despite the availability of free, mature, well-characterised systems for defining position in space. Extraction of such data from reference objects may require conversion from minute-degrees to decimal degrees, reprojection in a different Coordinate Reference System, merging of multiple sampling sites, reporting a large, vague sampling region as a single point, and estimating coordinates off maps. However, for the time being, the format is kept intentionally simple. All sites are reported as discrete points; and cases where any of the above operations are performed should be reported in the [comments field](#site-comment---string-free-optional).
+
 ```{r}
 #| label: setup
 library(eDataDRF)
@@ -23,22 +28,56 @@ library(eDataDRF)
 initialise_sites_tibble()
 ```
 
-## Variables
+# Variables
 
-# Site Code - String, free, mandatory
+## Site Code - String, free, mandatory
 `SITE_CODE`
 
-<!-- Unique code identifying the site. Primary key. -->
+A short, unique code identifying the sampled site. Although formatting is not enforced on this field, we recommend using an abbreviated combination of the campaign, long form site name and any details relevant to the site. For example:
 
-# Site Name - String, free, mandatory
+"Arctic Monitoring Program; Pelagic Sampling Point 37" -> `AMP-Pelagic-37`. The site code is the primary key for sites data and is used as a foreign key in [samples](samples_data.html) and [measurements](measurements_data.html).
+
+## Site Name - String, free, mandatory
 `SITE_NAME`
 
-<!-- Descriptive name of the sampling site. -->
+A longer form name of the site, potentially including details such as address, region, site type, etc. May be fully copied from source to enable easy tracing back of the relevant details. 
 
-# Site Geographic Feature - String, controlled, mandatory
+## Site Geographic Feature - String, controlled, mandatory
 `SITE_GEOGRAPHIC_FEATURE`
 
-<!-- Broad geographic feature type of the sampling location. -->
+Categorisation of site type allows for broad comparisons to be made. Site Geographic feature is based on a variety of existing land-use taxonomy to facilitate conversion and comparison:
+
+- [LUCAS Land Use Cover Hierachy](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=LUCAS_-_Land_use_and_land_cover_survey) (EU)
+- [CORINE Land Cover inventory](https://land.copernicus.eu/en/products/corine-land-cover) (EU)
+- Water Framework Directive water body types
+- Marine Something Framework Directive water types
+
+These are summarised in the table below
+
+| Value | Description | LUCAS | CORINE | WFD | MSFD |
+|---|---|---|---|---|---|
+| Not relevant | Use when geographic feature is not applicable | | | | |
+| Not reported | Use when information exists but was not reported | | | | |
+| River, stream, canal | Flowing water bodies | G20 | 5.1.1 | | |
+| Lake, pond, pool, reservoir | Standing water bodies | G10 | 5.1.2 | | |
+| Ocean, sea, territorial waters | Marine waters | G40 | 5.2.3 | | |
+| Coastal, fjord | Coastal waters out to territorial water boundaries | G30 | 5.2.1 | | |
+| Estuary | Estuaries | | 5.2.2 | | |
+| Drainage, sewer, artificial water | Human-made water channels | | | | |
+| Swamp, wetland | Water-saturated land | H00 | 4 | | |
+| Groundwater, aquifer | Subsurface water bodies | | | | |
+| WWTP | Wastewater treatment plant | U321 | 1.2.1 | | |
+| Artificial Land/Urban Areas | Built environment | A00 | 1 | | |
+| Landfills | Sites officially designated or functionally used for the disposal of waste | A00 | 1 | | |
+| Cropland | Agricultural land | B00 | 2 | | |
+| Woodland, forest | Tree-covered areas | C00 | 3.1 | | |
+| Shrubland | Areas dominated by shrubs | D00 | 3.2 | | |
+| Grassland | Areas dominated by grasses | E00 | | | |
+| Bare land and lichen/moss | Sparsely vegetated areas | F00 | 3.3 | | |
+| Other | Specify details in [SITE_COMMENT](#site-comment---string-free-optional) | | | | |
+
+
+### Controlled Vocabulary
 
 ```{r}
 #| label: site_geographic_feature
@@ -46,14 +85,12 @@ initialise_sites_tibble()
 geographic_features_vocabulary()
 ```
 
-## Controlled Vocabulary
-
-<!-- Fill in from geographic_features_vocabulary() output. -->
-
-# Site Geographic Feature Sub - String, controlled, mandatory
+## Site Geographic Feature Sub - String, controlled, mandatory
 `SITE_GEOGRAPHIC_FEATURE_SUB`
 
-<!-- Specific sub-category of the geographic feature. -->
+In some cases geographic feature vocabulary may not have enough resolution to capture sampling sites. For example, in bodies of water, it may be important to distinguish between samples from the benthos, water column, water surface, etc. In this case, sub-features can be used to add additional precision. 
+
+### Controlled Vocabulary
 
 ```{r}
 #| label: site_geographic_feature_sub
@@ -61,14 +98,12 @@ geographic_features_vocabulary()
 geographic_features_sub_vocabulary()
 ```
 
-## Controlled Vocabulary
-
-<!-- Fill in from geographic_features_sub_vocabulary() output. -->
-
-# Country ISO - String, controlled, mandatory
+## ISO Country  - String, controlled, mandatory
 `COUNTRY_ISO`
 
-<!-- ISO country code where the site is located. -->
+Although the sheer size of countries makes them at times poor identifiers of geographical location, they remain useful data. Although this variable is marked as mandatory, it is possible to enter "Not relevant" when sites are out of the territory of any nation (e.g. in international waters). The [ISO 3166 set of country codes](https://www.iso.org/iso-3166-country-codes.html) is used, via the R package `{iso}`.
+
+### Controlled Vocabulary
 
 ```{r}
 #| label: country_iso
@@ -76,14 +111,14 @@ geographic_features_sub_vocabulary()
 countries_vocabulary()
 ```
 
-## Controlled Vocabulary
-
-<!-- Fill in from countries_vocabulary() output (ISO 3166-1 country names). -->
-
-# Ocean IHO - String, controlled, mandatory
+## IHO Ocean/Sea - String, controlled, mandatory
 `OCEAN_IHO`
 
-<!-- International Hydrographic Organisation ocean region. -->
+As with countries, oceans are not necessarily the best geographical identifiers, but they provide useful, human-readable data for understanding sampling sites. The [International Hydrographic Organisation's version 3 Sea Areas](https://doi.org/10.14284/323) dataset is used to provide a reasonably-standardised set of names for seas and oceans. As with [Country](#iso-country---string-controlled-mandatory), Ocean is mandatory but should be marked as "Not relevant" when the site is on land.
+
+Where sampling sites are located in national territory but also in or near (intentionally vague) an ocean or sea, we recommend recording both variables.
+
+### Controlled Vocabulary
 
 ```{r}
 #| label: ocean_iho
@@ -91,44 +126,42 @@ countries_vocabulary()
 areas_vocabulary()
 ```
 
-## Controlled Vocabulary
-
-<!-- Fill in from areas_vocabulary() output. -->
-
-# Latitude - Numeric, free, mandatory
+## Latitude - Numeric, free, mandatory
 `LATITUDE`
 
-<!-- Latitude coordinate in decimal degrees. -->
+Site latitude (north-south position, also known as northing, between -90.0° and +90.0°) is recorded in decimal decimal degrees. Arbitrary precision (within the bounds of R's numeric data type) is possible, but the degree of precision reported (i.e. decimal places) should be appropriate to the actual sampling. 3 decimal places corresponds to approximately 111 m accuracy, and 4 to within 11 m. Under some circumstances this can cause somewhat confusing combinations of coordinates and site types; for example, a site may be reported as being on land but with coordinates that are clearly in the ocean. In future, we plan to include an explicit metric of spatial uncertainty. A latitude is always associated with a [Coordinate Reference System](#coordinate-reference-system---string-controlled-mandatory).
 
-# Longitude - Numeric, free, mandatory
+## Longitude - Numeric, free, mandatory
 `LONGITUDE`
 
-<!-- Longitude coordinate in decimal degrees. -->
+Site longitude (east-west position, also known as easting, between -180.0° and +180.0°) is recorded in decimal decimal degrees. See [Latitude](#latitude---numeric-free-mandatory) for further details. A longitude is always associated with a [Coordinate Reference System](#coordinate-reference-system---string-controlled-mandatory).
 
-# Site Coordinate System - String, controlled, mandatory
+## Coordinate Reference System - String, controlled, mandatory
 `SITE_COORDINATE_SYSTEM`
 
-<!-- Coordinate reference system used for the site coordinates. -->
+A site's latitude and longitude are calculated using a reference system "placed" at a given point on the globe and parameterised within a given region. This Coordinate Reference System is a necessary component of any geographical coordinate data. In most global datasets, the World Geodetic System, 1984 version (WGS 84) is used. However, national or other local datasets may use a variety of CRS, such as the Universal Transverse Mercator (UTM), which projects the Earth into a series of square or rectangular zones; in this case, it is necessary to know the CRS and the grid number. 
+
+This controlled vocabulary uses the package `{crsuggest}`, which in turn uses the EPSG Dataset v10.019, (product of the International Association of Oil & Gas Producers, [terms of use](https://epsg.org/terms-of-use.html)). However, because the full 6000+ CRS included would be impractically large for the associated UI, we filter this down to a small set of systems relevant to the test cases used with the format so far. In future, CRS metadata will be used to automatically filter available CRS based on the desired geographical scope.
+
+### Controlled Vocabulary
 
 ```{r}
 #| label: site_coordinate_system
 
-coordinate_systems_vocabulary()
+coordinate_systems_vocabulary(common_only = TRUE)
 ```
 
-## Controlled Vocabulary
-
-<!-- Fill in from coordinate_systems_vocabulary() output. -->
-
-# Altitude Value - Numeric, free, mandatory
+## Altitude Value - Numeric, free, mandatory
 `ALTITUDE_VALUE`
 
-<!-- Elevation or depth value. -->
+Altitude value above or below sea level, including depth of water sampling (but *not* depth of ice or sediment cores). This data is frequently not available for sampling sites, in which case it can be reported as 0. Associated with an [altitude unit](#altitude-unit---string-controlled-mandatory).
 
-# Altitude Unit - String, controlled, mandatory
+## Altitude Unit - String, controlled, mandatory
 `ALTITUDE_UNIT`
 
-<!-- Unit of measurement for the altitude value. -->
+Unit associated with [altitude value](#altitude-value---numeric-free-mandatory).
+
+### Controlled Vocabulary
 
 ```{r}
 #| label: altitude_unit
@@ -136,21 +169,18 @@ coordinate_systems_vocabulary()
 altitude_units_vocabulary()
 ```
 
-## Controlled Vocabulary
-
-<!-- Fill in from altitude_units_vocabulary() output. -->
-
-# Entered By - String, free, mandatory
+## Entered By - String, free, mandatory
 `ENTERED_BY`
 
-<!-- Person or entity who entered the site data. -->
+The name or email address of the user entering data.
 
-# Entered Date - String, free, mandatory
+## Entered Date - Date (ISO), free, mandatory
 `ENTERED_DATE`
 
-<!-- Date when the site data was entered. -->
+The date that site data were entered.
 
-# Site Comment - String, free, optional
+## Site Comment - String, free, optional
 `SITE_COMMENT`
 
-<!-- Additional notes about the site. -->
+Space for the recording of any additional notes or comments about the site deemed relevant, particularly any operations performed by the user on sites data, such as merging sites, converting a sampling region to a discrete point, or estimating point coordinates from a map.
+
