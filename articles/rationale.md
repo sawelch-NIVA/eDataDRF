@@ -1,0 +1,48 @@
+# Rationale
+
+``` r
+library(eDataDRF)
+```
+
+The eData Data Reporting Format is a format for the standardisation of
+data on pollutant occurence in the environment. By converting this data
+to a single, consistent format, it makes it easier to validate, compare,
+analyse, and reuse, in line with the [FAIR
+principles](https://www.go-fair.org/fair-principles/).
+
+## Why standardise?
+
+These data are typically published as concentrations (in water) or mass
+ratios (in soil, sludge and biota). Fully interpreting these
+measurements requires considerable metadata, relating to the time,
+place, conditions, methodology, and context of sampling. However, no
+single standard exists for these metadata, and study authors and
+sampling teams tend to use a variety of inconsistent definitions, units,
+and schema depending on their scientific domain and the study’s
+individual needs.
+
+This is not, in itself a problem. However, as environmental risk
+assessment becomes more data-based and larger scale, the need to use and
+re-use large quantities of data increases. When these datasets are
+consistent, validated, and interoperable, much time can be saved. When
+they are not, researchers much go through the tedious process of
+understanding, validating and remapping by hand; an often
+non-reproducible process. Thus a harmonised format - and associated
+validation and formatting functions - can represent a significant
+timesaver for anyone in such a position.
+
+## Why aquatic toxicology?
+
+Starting with a field we know well allows us to test the effectiveness
+of the underlying philosophy and technology.
+
+## Why an R package?
+
+Although an R package is not a conventional form for a data structure,
+as our extraction, analysis, workflow is heavily R-based it was a
+pragmatic choice. By using the existing package architecture, it was
+possible to integrate the format closely with downstream tools, and use
+existing package dependencies and versioning to keep them updated as the
+format changes. In future, we plan to extend the format to other forms.
+
+## Who supported this work?

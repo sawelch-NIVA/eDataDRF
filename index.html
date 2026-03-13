@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Data reporting format for STOP's exposure data format • eDataDRF</title>
-<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="lightswitch.js"></script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -19,11 +19,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="index.html">eDataDRF</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,14 @@
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/NIVANorge/eDataDRF/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
 
@@ -49,19 +57,36 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="edata-data-reporting-format">eData Data Reporting Format<a class="anchor" aria-label="anchor" href="#edata-data-reporting-format"></a>
+<div class="page-header"><h1 id="readme">Readme<a class="anchor" aria-label="anchor" href="#readme"></a>
 </h1></div>
-<p>The eData Data Reporting Format is a format for the standardisation of data on pollutant occurence in the environment. By converting this data to a single, consistent format, it makes it easier to validate, compare, analyse, and reuse, in line with the <a href="https://www.go-fair.org/fair-principles/" class="external-link">FAIR principles</a></p>
-<p>These data are typically published as concentrations (in water) or mass ratios (in soil, sludge and biota). Fully interpreting these measurements requires considerable metadata, relating to the time, place, conditions, methodology, and context of sampling. However, no single standard exists for these metadata, and study authors and sampling teams tend to use a variety of inconsistent definitions, units, and schema depending on their scientific domain and the study’s individual needs.</p>
-<p>This is not, in itself a problem. However, as environmental risk assessment becomes more data-based and larger scale, the need to use and re-use large quantities of data increases. When these datasets are consistent, validated, and interoperable, much time can be saved. When they are not, researchers much go through the tedious process of understanding, validating and remapping by hand; an often non-reproducible process. Thus a harmonised format - and associated validation and formatting functions - can represent a significant timesaver for anyone in such as position.</p>
-<p>This format is a (first) attempt to address this issue. Rather than attempt a perfect format that covers all relevant domains, we have elected to focus on pollutants in water, aquatic biota, and similar compartments (sludge, aquatic sediment, etc.). This has been designed to follow a database-like structure, with the expectation that the format will be developed into a full database schema in the future.</p>
+</div>
+<div class="section level1">
+<h1 id="edata-data-reporting-format">eData Data Reporting Format<a class="anchor" aria-label="anchor" href="#edata-data-reporting-format"></a>
+</h1>
+<p>The eData Data Reporting Format is a format for the reporting of chemical occurence/exposure data in the natural environment. It provides tables, vocabulary, and validation functions for structuring chemical occurence data, as well as spatial, social, biological, geographical, and other metadata.</p>
+</div>
+<div class="section level1">
+<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h1>
+<p>To install this package, you will need the <a href="https://devtools.r-lib.org/" class="external-link">devtools</a> package:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>  <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"NIVANorge/eDataDRF"</span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<p>The format is structured as a series of tables that collect different types of data. The <a href="https://NIVANorge.github.io/eDataDRF/articles/measurements_data.html">Measurements</a> table is the central data table. It references the other tables via foreign keys, unique identifying columns present in both tables. For more information on each table, please see the section below or the Articles section of the <a href="https://NIVANorge.github.io/eDataDRF/articles">documentation site</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://NIVANorge.github.io/eDataDRF/">eDataDRF</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">campaign_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/initialise_campaign_tibble.html">initialise_campaign_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">biota_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/initialise_biota_tibble.html">initialise_biota_tibble</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
 <div class="section level2">
 <h2 id="tables">Tables<a class="anchor" aria-label="anchor" href="#tables"></a>
 </h2>
 <p>Tables are created as <code><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble::tibble()</a></code> calls with empty variables of specific types (e.g. <code>character(0)</code> for strings). These support easier validation (see <a href="https://NIVANorge.github.io/eDataDRF/articles/validation.html">Validation</a>) and the extensive Tidyverse family of functions.</p>
 <p>Tables are listed below:</p>
 <table class="table">
-<caption>Table of tables in the eData format, their purpose, and comments.</caption>
 <colgroup>
 <col width="33%">
 <col width="33%">
@@ -120,16 +145,117 @@
 </tr>
 <tr class="even">
 <td><a href="https://NIVANorge.github.io/eDataDRF/articles/CREED_data.html">CREED (quality)</a></td>
-<td>Records assessment purpose statement, relevant data summarised from above tables, relevance/reliability scores, and final assessment of data quality.</td>
+<td>Records CREED assessment criteria, relevant data, criteria scores, and limitations</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><a href="https://NIVANorge.github.io/eDataDRF/articles/CREED_scores_data.html">CREED Scores</a></td>
-<td>[description needed]</td>
+<td>Records CREED usability scores calculated from CREED data above</td>
 <td></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="section level2">
+<h2 id="vocabulary">Vocabulary<a class="anchor" aria-label="anchor" href="#vocabulary"></a>
+</h2>
+<p>Likewise, controlled vocabulary is available as functions that return vectors, lists, or tables. In some cases, helper functions are available that wrap multiple invididual functions.</p>
+<p>Where external data sources are used to generate a vocabulary, functions may wrap (processed) data from other R packages or load raw data from external sources.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/measured_categories_vocabulary.html">measured_categories_vocabulary</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># returns a named vector</span></span>
+<span><span class="co">#&gt;               External               Internal                Surface </span></span>
+<span><span class="co">#&gt;       "External Media" "Internal to Organism"  "Surface of Organism"</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/environ_compartments_sub_vocabulary.html">environ_compartments_sub_vocabulary</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># returns a nested list</span></span>
+<span><span class="co">#&gt; $Aquatic</span></span>
+<span><span class="co">#&gt;                    Freshwater             Marine/Salt Water </span></span>
+<span><span class="co">#&gt;                  "Freshwater"           "Marine/Salt Water" </span></span>
+<span><span class="co">#&gt;   Brackish/Transitional Water                   Groundwater </span></span>
+<span><span class="co">#&gt; "Brackish/Transitional Water"                 "Groundwater" </span></span>
+<span><span class="co">#&gt;                    Wastewater          Liquid Growth Medium </span></span>
+<span><span class="co">#&gt;                  "Wastewater"        "Liquid Growth Medium" </span></span>
+<span><span class="co">#&gt;                     Rainwater                    Stormwater </span></span>
+<span><span class="co">#&gt;                   "Rainwater"                  "Stormwater" </span></span>
+<span><span class="co">#&gt;                      Leachate              Aquatic Sediment </span></span>
+<span><span class="co">#&gt;                    "Leachate"            "Aquatic Sediment" </span></span>
+<span><span class="co">#&gt;                     Porewater                        Sludge </span></span>
+<span><span class="co">#&gt;                   "Porewater"                      "Sludge" </span></span>
+<span><span class="co">#&gt;                      Snow/Ice </span></span>
+<span><span class="co">#&gt;                    "Snow/Ice" </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Atmospheric</span></span>
+<span><span class="co">#&gt;    Indoor Air   Outdoor Air </span></span>
+<span><span class="co">#&gt;  "Indoor Air" "Outdoor Air" </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Terrestrial</span></span>
+<span><span class="co">#&gt;     Terrestrial Biological Residue              Soil H Horizon (Peat) </span></span>
+<span><span class="co">#&gt;   "Terrestrial Biological Residue"            "Soil H Horizon (Peat)" </span></span>
+<span><span class="co">#&gt;           Soil O Horizon (Organic)           Soil A Horizon (Topsoil) </span></span>
+<span><span class="co">#&gt;         "Soil O Horizon (Organic)"         "Soil A Horizon (Topsoil)" </span></span>
+<span><span class="co">#&gt;           Soil E Horizon (Mineral)           Soil S Horizon (Mineral) </span></span>
+<span><span class="co">#&gt;         "Soil E Horizon (Mineral)"         "Soil S Horizon (Mineral)" </span></span>
+<span><span class="co">#&gt;   Soil C Horizon (Parent Material)           Soil R Horizon (Bedrock) </span></span>
+<span><span class="co">#&gt; "Soil C Horizon (Parent Material)"         "Soil R Horizon (Bedrock)" </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Biota</span></span>
+<span><span class="co">#&gt;   Biota, Terrestrial       Biota, Aquatic   Biota, Atmospheric </span></span>
+<span><span class="co">#&gt; "Biota, Terrestrial"     "Biota, Aquatic" "Biota, Atmospheric" </span></span>
+<span><span class="co">#&gt;         Biota, Other </span></span>
+<span><span class="co">#&gt;       "Biota, Other"</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/extraction_protocols_vocabulary.html">extraction_protocols_vocabulary</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># returns a tibble</span></span>
+<span><span class="co">#&gt; # A tibble: 19 × 3</span></span>
+<span><span class="co">#&gt;    Protocol_Type       Short_Name                        Long_Name              </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;               &lt;chr&gt;                             &lt;chr&gt;                  </span></span>
+<span><span class="co">#&gt;  1 Extraction Protocol Not relevant                      Not relevant           </span></span>
+<span><span class="co">#&gt;  2 Extraction Protocol Not reported                      Not reported           </span></span>
+<span><span class="co">#&gt;  3 Extraction Protocol None                              No extraction          </span></span>
+<span><span class="co">#&gt;  4 Extraction Protocol Methanol                          Methanol extraction    </span></span>
+<span><span class="co">#&gt;  5 Extraction Protocol Dichloromethane                   Dichloromethane extrac…</span></span>
+<span><span class="co">#&gt;  6 Extraction Protocol SPE Isolute Env+                  Solid phase extraction…</span></span>
+<span><span class="co">#&gt;  7 Extraction Protocol Membrane filtration 0.45um        Membrane filtration th…</span></span>
+<span><span class="co">#&gt;  8 Extraction Protocol Membrane filtration 0.2um         Membrane filtration th…</span></span>
+<span><span class="co">#&gt;  9 Extraction Protocol Membrane filtration               Membrane filtration    </span></span>
+<span><span class="co">#&gt; 10 Extraction Protocol Filtration                        Filtration             </span></span>
+<span><span class="co">#&gt; 11 Extraction Protocol Microwave-assisted acid digestion Microwave-assisted aci…</span></span>
+<span><span class="co">#&gt; 12 Extraction Protocol Acid digestion                    Acid digestion         </span></span>
+<span><span class="co">#&gt; 13 Extraction Protocol Pressurised liquid                Pressurised liquid ext…</span></span>
+<span><span class="co">#&gt; 14 Extraction Protocol Ultrasonic                        Ultrasonic extraction  </span></span>
+<span><span class="co">#&gt; 15 Extraction Protocol Soxhlet                           Soxhlet extraction     </span></span>
+<span><span class="co">#&gt; 16 Extraction Protocol QuEChERS                          Quick easy cheap effec…</span></span>
+<span><span class="co">#&gt; 17 Extraction Protocol Accelerated solvent               Accelerated solvent ex…</span></span>
+<span><span class="co">#&gt; 18 Extraction Protocol Sequential extraction             Sequential extraction …</span></span>
+<span><span class="co">#&gt; 19 Extraction Protocol Other                             Other</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/protocol_options_vocabulary.html">protocol_options_vocabulary</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># calls bind_rows() on four *_protocol_vocabulary() functions to return a tibble</span></span>
+<span><span class="co">#&gt; # A tibble: 75 × 3</span></span>
+<span><span class="co">#&gt;    Protocol_Type     Short_Name     Long_Name            </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;             &lt;chr&gt;          &lt;chr&gt;                </span></span>
+<span><span class="co">#&gt;  1 Sampling Protocol Not relevant   Not relevant         </span></span>
+<span><span class="co">#&gt;  2 Sampling Protocol Not reported   Not reported         </span></span>
+<span><span class="co">#&gt;  3 Sampling Protocol Point          Point sampling       </span></span>
+<span><span class="co">#&gt;  4 Sampling Protocol Composite      Composite sampling   </span></span>
+<span><span class="co">#&gt;  5 Sampling Protocol Trawl          Trawl sampling       </span></span>
+<span><span class="co">#&gt;  6 Sampling Protocol Grab           Grab sampling        </span></span>
+<span><span class="co">#&gt;  7 Sampling Protocol Core           Core sampling        </span></span>
+<span><span class="co">#&gt;  8 Sampling Protocol Seine net      Seine net sampling   </span></span>
+<span><span class="co">#&gt;  9 Sampling Protocol Electrofishing Electrofishing       </span></span>
+<span><span class="co">#&gt; 10 Sampling Protocol Plankton net   Plankton net sampling</span></span>
+<span><span class="co">#&gt; # ℹ 65 more rows</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/coordinate_systems_vocabulary.html">coordinate_systems_vocabulary</a></span><span class="op">(</span>common_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># calls crsuggest::crs_sf, returns 4 rows (or more when common_only = FALSE)</span></span>
+<span><span class="co">#&gt; [1] "Not relevant"          "Not reported"          "WGS 84"               </span></span>
+<span><span class="co">#&gt; [4] "ETRS89"                "WGS 84 / UTM zone 32N" "WGS 84 / UTM zone 33N"</span></span>
+<span><span class="co">#&gt; [7] "WGS 84 / UTM zone 34N" "WGS 84 / UTM zone 35N" "Other"</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/ocean_vocabulary.html">ocean_vocabulary</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span> <span class="co"># loads an RDS of IHO ocean definitions from /extdata/, returns a vector</span></span>
+<span><span class="co">#&gt;  [1] "Not relevant"       "Not reported"       "Other"             </span></span>
+<span><span class="co">#&gt;  [4] "Torres Strait"      "Tasman Sea"         "Solomon Sea"       </span></span>
+<span><span class="co">#&gt;  [7] "Ross Sea"           "Coral Sea"          "Bismarck Sea"      </span></span>
+<span><span class="co">#&gt; [10] "Bellingshausen Sea" "Bass Strait"        "Amundsen Sea"      </span></span>
+<span><span class="co">#&gt; [13] "Timor Sea"          "Sunda Strait"       "Sumba Strait"      </span></span>
+<span><span class="co">#&gt; [16] "Sulu Sea"           "Sulawesi Sea"       "South China Sea"   </span></span>
+<span><span class="co">#&gt; [19] "Singapore Strait"   "Seram Sea"</span></span></code></pre></div>
 <pre class="mermaid"><code>erDiagram
     Campaign ||--o{ Measurements : "Belongs"
     Campaign ||--o{ References : "Belongs"
@@ -162,13 +288,9 @@
 
     CREED {
     }</code></pre>
-<ul>
-<li>Caveats</li>
-<li>Links</li>
-<li>Vignettes</li>
-</ul>
 </div>
 </div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">

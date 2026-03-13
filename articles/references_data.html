@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Reference data • eDataDRF</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -19,11 +19,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="../index.html">eDataDRF</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,14 @@
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/NIVANorge/eDataDRF/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
 
@@ -66,7 +74,7 @@
 
     <section class="section level2"><h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>For academic publications, standard citation formats are generally sufficient. The eData format is based on a subset of the <a href="https://www.bibtex.org/Format/" class="external-link">BibTeX</a> format, reduced to the most relevant types (hournal article, book, report, dataset) and fields. In other cases, <a href="campaign_data.html">Campaign data</a> may be more relevant; in this case, much of the references data can be left blank.</p>
+<p><strong>Reference data</strong> captures the academic literature metadata of a data object. The eData format is based on a subset of the <a href="https://www.bibtex.org/Format/" class="external-link">BibTeX</a> format, reduced to the most relevant types (journal article, book, report, dataset) and fields. In other cases, <a href="campaign_data.html">Campaign data</a> may be more relevant; in this case, much of the references data can be left blank.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://NIVANorge.github.io/eDataDRF/">eDataDRF</a></span><span class="op">)</span></span></code></pre></div>
@@ -111,83 +119,82 @@
 </div>
 </section><section class="section level2"><h2 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
 </h2>
-<section class="level2"><h3 id="reference-id---string-auto-generated-mandatory">Reference ID - String, auto-generated, mandatory<a class="anchor" aria-label="anchor" href="#reference-id---string-auto-generated-mandatory"></a>
+<section class="level2"><h3 id="reference-id">Reference ID<a class="anchor" aria-label="anchor" href="#reference-id"></a>
 </h3>
-<p><code>REFERENCE_ID</code></p>
+<p><code>REFERENCE_ID</code> - <em>string, auto-generated, mandatory</em></p>
 <p>The reference’s primary key, automatically generated from YEAR, AUTHOR, and TITLE using <code><a href="../reference/generate_reference_id.html">generate_reference_id()</a></code>, as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># eDataDRF::generate_reference_id(</span></span>
-<span><span class="co">#   date = 2018, # i.e. publication date</span></span>
-<span><span class="co">#   author = "Last1, First1; Last2, First2", # Take last name of first author</span></span>
-<span><span class="co">#   title = "A study of recent developments in the field" # Extract first three words, convert to PascalCase</span></span>
-<span><span class="co"># )</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/generate_reference_id.html">generate_reference_id</a></span><span class="op">(</span></span>
+<span>  date <span class="op">=</span> <span class="fl">2018</span>, <span class="co"># i.e. publication date</span></span>
+<span>  author <span class="op">=</span> <span class="st">"Last1, First1; Last2, First2"</span>, <span class="co"># Take last name of first author</span></span>
+<span>  title <span class="op">=</span> <span class="st">"A study of recent developments in the field"</span> <span class="co"># Extract first three words, convert to PascalCase</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "2018Last1AStudyOf"</span></span></code></pre></div>
 </div>
-<p>Reference ID is also a foreign key in <a href="measurements_data.html">Measurement data</a>.</p>
-</section><section class="level2"><h3 id="reference-type---string-controlled-mandatory">Reference Type - String, controlled, mandatory<a class="anchor" aria-label="anchor" href="#reference-type---string-controlled-mandatory"></a>
+<p>Reference ID is also a foreign key in <a href="measurements_data.html#reference-id">Measurement data</a> and <a href="CREED_scores_data.html#reference-id">CREED scores</a>.</p>
+</section><section class="level2"><h3 id="reference-type">Reference Type<a class="anchor" aria-label="anchor" href="#reference-type"></a>
 </h3>
-<p><code>REFERENCE_TYPE</code></p>
-<!-- Type of publication (Journal Article, Report, Dataset, etc.). -->
-</section><section class="level2"><h3 id="author---string-free-mandatory">Author - String, free, mandatory<a class="anchor" aria-label="anchor" href="#author---string-free-mandatory"></a>
+<p><code>REFERENCE_TYPE</code> - <em>string, controlled, mandatory</em></p>
+<p>The type of publication. Currently restricted to Journal Article, Book, Report, or Dataset/Database.</p>
+</section><section class="level2"><h3 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a>
 </h3>
-<p><code>AUTHOR</code></p>
+<p><code>AUTHOR</code> - <em>string, free, mandatory</em></p>
 <p>The full authors list from the referenced object, formatted as <code>Lastname1, Firstname1; Lastname2, Firstname2; etc.</code>.</p>
-</section><section class="level2"><h3 id="title---string-free-mandatory">Title - String, free, mandatory<a class="anchor" aria-label="anchor" href="#title---string-free-mandatory"></a>
+</section><section class="level2"><h3 id="title">Title<a class="anchor" aria-label="anchor" href="#title"></a>
 </h3>
-<p><code>TITLE</code></p>
+<p><code>TITLE</code> - <em>string, free, mandatory</em></p>
 <p>The title of the publication or document.</p>
-</section><section class="level2"><h3 id="year---integer-free-mandatory">Year - Integer, free, mandatory<a class="anchor" aria-label="anchor" href="#year---integer-free-mandatory"></a>
+</section><section class="level2"><h3 id="year">Year<a class="anchor" aria-label="anchor" href="#year"></a>
 </h3>
-<p><code>YEAR</code></p>
+<p><code>YEAR</code> - <em>integer, free, mandatory</em></p>
 <p>The year of publication or the most recent update to the referenced object.</p>
-</section><section class="level2"><h3 id="access-date---date-iso-free-mandatory">Access Date - Date (ISO), free, mandatory<a class="anchor" aria-label="anchor" href="#access-date---date-iso-free-mandatory"></a>
+</section><section class="level2"><h3 id="access-date">Access Date<a class="anchor" aria-label="anchor" href="#access-date"></a>
 </h3>
-<p><code>ACCESS_DATE</code></p>
+<p><code>ACCESS_DATE</code> - <em>date (ISO), free, mandatory</em></p>
 <p>The ISO date when the referenced object was accessed.</p>
-</section><section class="level2"><h3 id="journal-name---string-free-conditional-on-reference-type">Journal Name - String, free, conditional on reference type<a class="anchor" aria-label="anchor" href="#journal-name---string-free-conditional-on-reference-type"></a>
+</section><section class="level2"><h3 id="journal-name">Journal Name<a class="anchor" aria-label="anchor" href="#journal-name"></a>
 </h3>
-<p><code>PERIODICAL_JOURNAL</code></p>
-<p>The name of the journal or periodical a journal article was published in. Conditionally mandatory if <a href="#reference-type---string-controlled-mandatory">Reference Type</a> is <code>Journal Article</code>.</p>
-</section><section class="level2"><h3 id="volume---numeric-free-optional">Volume - Numeric, free, optional<a class="anchor" aria-label="anchor" href="#volume---numeric-free-optional"></a>
+<p><code>PERIODICAL_JOURNAL</code> - <em>string, free, conditional on reference type</em> The name of the journal or periodical a journal article was published in. Conditionally mandatory if <a href="#reference-type">Reference Type</a> is <code>Journal Article</code>.</p>
+</section><section class="level2"><h3 id="volume">Volume<a class="anchor" aria-label="anchor" href="#volume"></a>
 </h3>
-<p><code>VOLUME</code></p>
+<p><code>VOLUME</code> - <em>numeric, free, optional</em></p>
 <p>The volume of a named journal an article was published in. Optional.</p>
-</section><section class="level2"><h3 id="issue---numeric-free-optional">Issue - Numeric, free, optional<a class="anchor" aria-label="anchor" href="#issue---numeric-free-optional"></a>
+</section><section class="level2"><h3 id="issue">Issue<a class="anchor" aria-label="anchor" href="#issue"></a>
 </h3>
-<p><code>ISSUE</code></p>
+<p><code>ISSUE</code> - <em>numeric, free, optional</em></p>
 <p>The issue of a named journal an article was published in. Optional.</p>
-</section><section class="level2"><h3 id="publisher---string-free-conditional-on-reference-type">Publisher - String, free, conditional on reference type<a class="anchor" aria-label="anchor" href="#publisher---string-free-conditional-on-reference-type"></a>
+</section><section class="level2"><h3 id="publisher">Publisher<a class="anchor" aria-label="anchor" href="#publisher"></a>
 </h3>
-<p><code>PUBLISHER</code></p>
+<p><code>PUBLISHER</code> - <em>string, free, conditional on reference type</em></p>
 <p>The publisher of a reference object. Conditionally mandatory if <a href="#reference-type---string-controlled-mandatory">Reference Type</a> is <code>Book</code> or <code>Report</code>.</p>
-</section><section class="level2"><h3 id="institution---string-free-conditional-on-reference-type">Institution - String, free, conditional on reference type<a class="anchor" aria-label="anchor" href="#institution---string-free-conditional-on-reference-type"></a>
+</section><section class="level2"><h3 id="institution">Institution<a class="anchor" aria-label="anchor" href="#institution"></a>
 </h3>
-<p><code>INSTITUTION</code></p>
+<p><code>INSTITUTION</code> - <em>string, free, conditional on reference type</em></p>
 <p>The primary instition responsible for a referenced object. Conditionally mandatory if <a href="#reference-type---string-controlled-mandatory">Reference Type</a> is <code>Report</code>.</p>
-</section><section class="level2"><h3 id="doi---string-free-optional">DOI - String, free, optional<a class="anchor" aria-label="anchor" href="#doi---string-free-optional"></a>
+</section><section class="level2"><h3 id="doi">DOI<a class="anchor" aria-label="anchor" href="#doi"></a>
 </h3>
-<p><code>DOI</code></p>
-<p>If available, the Digital Object Identifier associated with a reference object. Optional, but the preferred identifier when avaiable.</p>
+<p><code>DOI</code> - <em>String, free, optional</em> If available, the Digital Object Identifier associated with a reference object. Optional, but the preferred identifier when avaiable.</p>
 <p>See the website of the <a href="https://www.doi.org/" class="external-link">doi Foundation</a> for more information.</p>
-</section><section class="level2"><h3 id="url---string-free-optional">URL - String, free, optional<a class="anchor" aria-label="anchor" href="#url---string-free-optional"></a>
+</section><section class="level2"><h3 id="url">URL<a class="anchor" aria-label="anchor" href="#url"></a>
 </h3>
-<p><code>URL</code></p>
+<p><code>URL</code> - <em>String, free, optional</em></p>
 <p>A Uniform Resource Locator (URL, i.e. web address) linking to the referenced object, if available. Optional.</p>
-</section><section class="level2"><h3 id="isbn-issn---string-free-optional">ISBN ISSN - String, free, optional<a class="anchor" aria-label="anchor" href="#isbn-issn---string-free-optional"></a>
+</section><section class="level2"><h3 id="isbn-issn">ISBN ISSN<a class="anchor" aria-label="anchor" href="#isbn-issn"></a>
 </h3>
-<p><code>ISBN_ISSN</code></p>
+<p><code>ISBN_ISSN</code> - <em>String, free, optional</em></p>
 <p>An International Standard Book Number (ISBN, 10 or 13 digits) or International Standard Serial Number (ISSN, 8 digits) associated with a book or periodical. Optional.</p>
-</section><section class="level2"><h3 id="edition---string-free-optional">Edition - String, free, optional<a class="anchor" aria-label="anchor" href="#edition---string-free-optional"></a>
+</section><section class="level2"><h3 id="edition">Edition<a class="anchor" aria-label="anchor" href="#edition"></a>
 </h3>
-<p><code>EDITION</code></p>
+<p><code>EDITION</code> - <em>String, free, optional</em></p>
 <p>The edition of a referenced object, if relevant. Optional.</p>
-</section><section class="level2"><h3 id="document-number---string-free-optional">Document Number - String, free, optional<a class="anchor" aria-label="anchor" href="#document-number---string-free-optional"></a>
+</section><section class="level2"><h3 id="document-number">Document Number<a class="anchor" aria-label="anchor" href="#document-number"></a>
 </h3>
-<p><code>DOCUMENT_NUMBER</code></p>
+<p><code>DOCUMENT_NUMBER</code> - <em>String, free, optional</em></p>
 <p>A document or report number, typically available for reports and other official documents. Optional.</p>
-</section><section class="level2"><h3 id="reference-comment---string-free-optional">Reference Comment - String, free, optional<a class="anchor" aria-label="anchor" href="#reference-comment---string-free-optional"></a>
+</section><section class="level2"><h3 id="reference-comment">Reference Comment<a class="anchor" aria-label="anchor" href="#reference-comment"></a>
 </h3>
-<p><code>REF_COMMENT</code></p>
+<p><code>REF_COMMENT</code> - <em>String, free, optional</em></p>
 <p>Space for the recording of any additional notes or comments about the reference deemed relevant.</p>
 </section></section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

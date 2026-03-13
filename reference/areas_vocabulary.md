@@ -1,4 +1,4 @@
-# Ocean areas controlled vocabulary
+# Ocean controlled vocabulary (wrapper for ocean_vocabulary())
 
 Returns controlled vocabulary options for IHO ocean regions.
 
@@ -10,15 +10,16 @@ areas_vocabulary()
 
 ## Value
 
-A character vector of ocean area options
+A character vector of ocean name options
 
 ## Details
 
 Provides ocean and sea names from the International Hydrographic
 Organisation (IHO) regions dataset, downloaded from
 https://www.marineregions.org/download_file.php?name=World_Seas_IHO_v3.zip.
-The complete list is read from an internal data file (IHO_oceans.rds)
-and includes options such as:
+Wrapper for ocean_vocabulary() used to maintain compatibility. The
+complete list is read from an internal data file (IHO_oceans.rds) and
+includes options such as:
 
 Not relevant
 
@@ -37,6 +38,8 @@ Other site:
 [`altitude_units_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/altitude_units_vocabulary.md),
 [`coordinate_systems_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/coordinate_systems_vocabulary.md),
 [`countries_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/countries_vocabulary.md),
+[`example_sites_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/example_sites_tibble.md),
 [`geographic_features_sub_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/geographic_features_sub_vocabulary.md),
 [`geographic_features_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/geographic_features_vocabulary.md),
-[`initialise_sites_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/initialise_sites_tibble.md)
+[`initialise_sites_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/initialise_sites_tibble.md),
+[`ocean_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/ocean_vocabulary.md)

@@ -36,7 +36,9 @@ ENTERED_DATE: Date when the data was entered into the system (mandatory)
 CAMPAIGN_COMMENT: Additional notes or comments about the campaign
 (optional)
 
-See `vignette("campaign-data")` for more information.
+See
+[`vignette("campaign_data")`](https://NIVANorge.github.io/eDataDRF/articles/campaign_data.md)
+for more information.
 
 ## See also
 
@@ -51,3 +53,6 @@ Other initialise_tibble:
 [`initialise_references_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/initialise_references_tibble.md),
 [`initialise_samples_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/initialise_samples_tibble.md),
 [`initialise_sites_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/initialise_sites_tibble.md)
+
+Other campaign:
+[`example_campaign_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/example_campaign_tibble.md)

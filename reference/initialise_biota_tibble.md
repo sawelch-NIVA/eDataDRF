@@ -59,6 +59,10 @@ SAMPLE_SPECIES_GENDER: Gender or sex of the sampled organism (mandatory)
 BIOTA_COMMENT: Additional notes or comments about the biological sample
 (optional)
 
+See
+[`vignette("biota_data")`](https://NIVANorge.github.io/eDataDRF/articles/biota_data.md)
+for more information.
+
 ## See also
 
 Other initialise_tibble:
@@ -74,6 +78,7 @@ Other initialise_tibble:
 [`initialise_sites_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/initialise_sites_tibble.md)
 
 Other biota:
+[`example_biota_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/example_biota_tibble.md),
 [`gender_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/gender_vocabulary.md),
 [`lifestage_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/lifestage_vocabulary.md),
 [`species_groups_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/species_groups_vocabulary.md),

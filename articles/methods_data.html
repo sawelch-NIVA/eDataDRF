@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Methods data • eDataDRF</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -19,11 +19,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="../index.html">eDataDRF</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,14 @@
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/NIVANorge/eDataDRF/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
 
@@ -75,7 +83,7 @@
 </ol>
 <p>These methodologies are structured for the collection of data on chemicals stressors, which reflects the dominant use case of the format so far. Extension to cover a greater range of non-chemical stressors is planned for future versions.</p>
 <p>Currently no external ontology or taxonomy is used for methodology. The <a href="https://github.com/rsc-ontology/rsc-cmo" class="external-link">Chemical Methods Ontology</a> (CMO) may be appropriate, and we will continue to review its progress to determine the appropriate form of any harmonisation.</p>
-<p>The Methods table is a metadata table that is transformed before being linked to the <a href="measurements_data.html">Measurements table</a>. Because it is assumed that each measurement will typically have a sampling, extraction, fractionation, and analytical protocol associated with it, the measurements table has a foreign key for each type of methdology that references the relevant <a href="#protocol-id---string-free-mandatory">Protocol ID</a>.</p>
+<p>The Methods table is a metadata table that is transformed before being linked to the <a href="measurements_data.html">Measurements table</a>. Because it is assumed that each measurement will typically have a sampling, extraction, fractionation, and analytical protocol associated with it, the measurements table has a foreign key for each type of methdology that references the relevant <a href="#protocol-id">Protocol ID</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://NIVANorge.github.io/eDataDRF/">eDataDRF</a></span><span class="op">)</span></span></code></pre></div>
@@ -89,9 +97,9 @@
 </div>
 </section><section class="section level2"><h2 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
 </h2>
-<section class="level2"><h3 id="protocol-id---string-free-mandatory">Protocol ID - String, free, mandatory<a class="anchor" aria-label="anchor" href="#protocol-id---string-free-mandatory"></a>
+<section class="level2"><h3 id="protocol-id">Protocol ID<a class="anchor" aria-label="anchor" href="#protocol-id"></a>
 </h3>
-<p><code>PROTOCOL_ID</code></p>
+<p><code>PROTOCOL_ID</code> - <em>string, free, mandatory</em></p>
 <p>A short, terse identifier for the protocol. This is used as a primary key for Methods data and a foreign key in the Sampling Protocol, Extraction Protocol, Fractionation Protocol, and Analytical Protocol columns. <a href="measurements_data.html">Measurements data</a>.</p>
 <p>Protocol IDs are automatically generated based on the protocol type, short name, campaign name, and, in cases where more than one of a type of technique is used per campaign, sequence number. This is theoretically vulnerable to colisions, and a hashed or serial key would be safer, but this is not anticipated to be a problem at the current scale of use at the format. Additionally, it is far easier to read and intepret for humans.</p>
 <div class="cell">
@@ -104,13 +112,13 @@
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "A01_ICPMS_TestCampai"</span></span></code></pre></div>
 </div>
-</section><section class="level2"><h3 id="campaign-name---string-free-mandatory">Campaign Name - String, free, mandatory<a class="anchor" aria-label="anchor" href="#campaign-name---string-free-mandatory"></a>
+</section><section class="level2"><h3 id="campaign-name">Campaign Name<a class="anchor" aria-label="anchor" href="#campaign-name"></a>
 </h3>
-<p><code>CAMPAIGN_NAME</code></p>
-<p>A short, terse identifier for the campaign. Foreign key referenced from <a href="campaign_data.html">Campaign data</a>, used to generate <a href="#protocol-id---string-free-mandatory">Protocol ID</a>.</p>
-</section><section class="level2"><h3 id="protocol-category---string-controlled-vocabulary-mandatory">Protocol Category - String, controlled vocabulary, mandatory<a class="anchor" aria-label="anchor" href="#protocol-category---string-controlled-vocabulary-mandatory"></a>
+<p><code>CAMPAIGN_NAME</code> - <em>string, free, mandatory</em></p>
+<p>A short, terse identifier for the campaign. Foreign key referenced from <a href="campaign_data.html">Campaign data</a>, used to generate <a href="#protocol-id">Protocol ID</a>.</p>
+</section><section class="level2"><h3 id="protocol-category">Protocol Category<a class="anchor" aria-label="anchor" href="#protocol-category"></a>
 </h3>
-<p><code>PROTOCOL_CATEGORY</code></p>
+<p><code>PROTOCOL_CATEGORY</code> - <em>string, controlled vocabulary, mandatory</em></p>
 <p>The category of protocol/method (Sampling, Extraction, Fractionation, Analytical).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
@@ -118,14 +126,14 @@
 <span><span class="co">#&gt; [1] "Sampling Protocol"      "Fractionation Protocol" "Extraction Protocol"   </span></span>
 <span><span class="co">#&gt; [4] "Analytical Protocol"</span></span></code></pre></div>
 </div>
-</section><section class="level2"><h3 id="protocol-name---string-controlled-vocabulary-mandatory">Protocol Name - String, controlled vocabulary, mandatory<a class="anchor" aria-label="anchor" href="#protocol-name---string-controlled-vocabulary-mandatory"></a>
+</section><section class="level2"><h3 id="protocol-name">Protocol Name<a class="anchor" aria-label="anchor" href="#protocol-name"></a>
 </h3>
-<p><code>PROTOCOL_NAME</code></p>
+<p><code>PROTOCOL_NAME</code> - <em>string, controlled vocabulary, mandatory</em></p>
 <p>The consensus name (short and long) of a protocol or method used in sampling. Options are currently based on the aquatic ecotoxicology domain, but will be extended and harmonised with relevant ontologies and taxonomies as practical.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/protocol_options_vocabulary.html">protocol_options_vocabulary</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 75 × 3</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sampling_protocols_vocabulary.html">sampling_protocols_vocabulary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 22 × 3</span></span>
 <span><span class="co">#&gt;    Protocol_Type     Short_Name     Long_Name            </span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;             &lt;chr&gt;          &lt;chr&gt;                </span></span>
 <span><span class="co">#&gt;  1 Sampling Protocol Not relevant   Not relevant         </span></span>
@@ -138,11 +146,82 @@
 <span><span class="co">#&gt;  8 Sampling Protocol Seine net      Seine net sampling   </span></span>
 <span><span class="co">#&gt;  9 Sampling Protocol Electrofishing Electrofishing       </span></span>
 <span><span class="co">#&gt; 10 Sampling Protocol Plankton net   Plankton net sampling</span></span>
-<span><span class="co">#&gt; # ℹ 65 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # ℹ 12 more rows</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/extraction_protocols_vocabulary.html">extraction_protocols_vocabulary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 19 × 3</span></span>
+<span><span class="co">#&gt;    Protocol_Type       Short_Name                        Long_Name              </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;               &lt;chr&gt;                             &lt;chr&gt;                  </span></span>
+<span><span class="co">#&gt;  1 Extraction Protocol Not relevant                      Not relevant           </span></span>
+<span><span class="co">#&gt;  2 Extraction Protocol Not reported                      Not reported           </span></span>
+<span><span class="co">#&gt;  3 Extraction Protocol None                              No extraction          </span></span>
+<span><span class="co">#&gt;  4 Extraction Protocol Methanol                          Methanol extraction    </span></span>
+<span><span class="co">#&gt;  5 Extraction Protocol Dichloromethane                   Dichloromethane extrac…</span></span>
+<span><span class="co">#&gt;  6 Extraction Protocol SPE Isolute Env+                  Solid phase extraction…</span></span>
+<span><span class="co">#&gt;  7 Extraction Protocol Membrane filtration 0.45um        Membrane filtration th…</span></span>
+<span><span class="co">#&gt;  8 Extraction Protocol Membrane filtration 0.2um         Membrane filtration th…</span></span>
+<span><span class="co">#&gt;  9 Extraction Protocol Membrane filtration               Membrane filtration    </span></span>
+<span><span class="co">#&gt; 10 Extraction Protocol Filtration                        Filtration             </span></span>
+<span><span class="co">#&gt; 11 Extraction Protocol Microwave-assisted acid digestion Microwave-assisted aci…</span></span>
+<span><span class="co">#&gt; 12 Extraction Protocol Acid digestion                    Acid digestion         </span></span>
+<span><span class="co">#&gt; 13 Extraction Protocol Pressurised liquid                Pressurised liquid ext…</span></span>
+<span><span class="co">#&gt; 14 Extraction Protocol Ultrasonic                        Ultrasonic extraction  </span></span>
+<span><span class="co">#&gt; 15 Extraction Protocol Soxhlet                           Soxhlet extraction     </span></span>
+<span><span class="co">#&gt; 16 Extraction Protocol QuEChERS                          Quick easy cheap effec…</span></span>
+<span><span class="co">#&gt; 17 Extraction Protocol Accelerated solvent               Accelerated solvent ex…</span></span>
+<span><span class="co">#&gt; 18 Extraction Protocol Sequential extraction             Sequential extraction …</span></span>
+<span><span class="co">#&gt; 19 Extraction Protocol Other                             Other</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/fractionation_protocols_vocabulary.html">fractionation_protocols_vocabulary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 19 × 3</span></span>
+<span><span class="co">#&gt;    Protocol_Type          Short_Name        Long_Name                           </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                  &lt;chr&gt;             &lt;chr&gt;                               </span></span>
+<span><span class="co">#&gt;  1 Fractionation Protocol Not relevant      Not relevant                        </span></span>
+<span><span class="co">#&gt;  2 Fractionation Protocol Not reported      Not reported                        </span></span>
+<span><span class="co">#&gt;  3 Fractionation Protocol Total             Total fraction                      </span></span>
+<span><span class="co">#&gt;  4 Fractionation Protocol Particles         Particulate fraction                </span></span>
+<span><span class="co">#&gt;  5 Fractionation Protocol Colloidal         Colloidal fraction                  </span></span>
+<span><span class="co">#&gt;  6 Fractionation Protocol LMM               Low molecular mass fraction         </span></span>
+<span><span class="co">#&gt;  7 Fractionation Protocol Aqueous           Aqueous fraction                    </span></span>
+<span><span class="co">#&gt;  8 Fractionation Protocol Filtered 0.45um   Filtered through 0.45 micrometer me…</span></span>
+<span><span class="co">#&gt;  9 Fractionation Protocol Filtered 0.2um    Filtered through 0.2 micrometer mem…</span></span>
+<span><span class="co">#&gt; 10 Fractionation Protocol Dissolved         Dissolved fraction                  </span></span>
+<span><span class="co">#&gt; 11 Fractionation Protocol Filtered          Filtered fraction                   </span></span>
+<span><span class="co">#&gt; 12 Fractionation Protocol Acid extractable  Acid extractable fraction           </span></span>
+<span><span class="co">#&gt; 13 Fractionation Protocol Reducible         Reducible fraction                  </span></span>
+<span><span class="co">#&gt; 14 Fractionation Protocol Oxidisable        Oxidisable fraction                 </span></span>
+<span><span class="co">#&gt; 15 Fractionation Protocol Residual          Residual fraction                   </span></span>
+<span><span class="co">#&gt; 16 Fractionation Protocol Bioavailable      Bioavailable fraction               </span></span>
+<span><span class="co">#&gt; 17 Fractionation Protocol Free ion          Free ion activity                   </span></span>
+<span><span class="co">#&gt; 18 Fractionation Protocol Size fractionated Size fractionated                   </span></span>
+<span><span class="co">#&gt; 19 Fractionation Protocol Other             Other</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/analytical_protocols_vocabulary.html">analytical_protocols_vocabulary</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 15 × 3</span></span>
+<span><span class="co">#&gt;    Protocol_Type       Short_Name         Long_Name                             </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;               &lt;chr&gt;              &lt;chr&gt;                                 </span></span>
+<span><span class="co">#&gt;  1 Analytical Protocol Not relevant       Not relevant                          </span></span>
+<span><span class="co">#&gt;  2 Analytical Protocol Not reported       Not reported                          </span></span>
+<span><span class="co">#&gt;  3 Analytical Protocol GC-MS              Gas chromatography mass spectrometry  </span></span>
+<span><span class="co">#&gt;  4 Analytical Protocol LC-MS              Liquid chromatography mass spectromet…</span></span>
+<span><span class="co">#&gt;  5 Analytical Protocol LC-MS/MS           Liquid chromatography tandem mass spe…</span></span>
+<span><span class="co">#&gt;  6 Analytical Protocol GC-MS/MS           Gas chromatography tandem mass spectr…</span></span>
+<span><span class="co">#&gt;  7 Analytical Protocol UPLC               Ultra performance liquid chromatograp…</span></span>
+<span><span class="co">#&gt;  8 Analytical Protocol ICP-MS             Inductively coupled plasma mass spect…</span></span>
+<span><span class="co">#&gt;  9 Analytical Protocol ICP-OES            Inductively coupled plasma optical em…</span></span>
+<span><span class="co">#&gt; 10 Analytical Protocol AAS                Atomic absorption spectroscopy        </span></span>
+<span><span class="co">#&gt; 11 Analytical Protocol XRF                X-ray fluorescence spectroscopy       </span></span>
+<span><span class="co">#&gt; 12 Analytical Protocol Ion chromatography Ion chromatography                    </span></span>
+<span><span class="co">#&gt; 13 Analytical Protocol Spectrophotometry  Spectrophotometry                     </span></span>
+<span><span class="co">#&gt; 14 Analytical Protocol Fluorescence       Fluorescence spectroscopy             </span></span>
+<span><span class="co">#&gt; 15 Analytical Protocol Other              Other</span></span>
+<span></span>
+<span><span class="co"># call all of the above functions bound into a single table</span></span>
+<span><span class="co"># protocol_options_vocabulary()</span></span></code></pre></div>
 </div>
-</section><section class="level2"><h3 id="protocol-comment---string-free-optional">Protocol Comment - String, free, optional<a class="anchor" aria-label="anchor" href="#protocol-comment---string-free-optional"></a>
+</section><section class="level2"><h3 id="protocol-comment">Protocol Comment<a class="anchor" aria-label="anchor" href="#protocol-comment"></a>
 </h3>
-<p><code>PROTOCOL_COMMENT</code></p>
+<p><code>PROTOCOL_COMMENT</code> - <em>string, free, optional</em></p>
 <p>Space for the recording of any additional notes or comments about the method deemed relevant. As information on the specific equipment or more detailed protocols may also be useful, users are encouraged to copy relevant text verbatim from the source.</p>
 </section></section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

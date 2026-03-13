@@ -48,10 +48,11 @@ relevant to the site. For example:
 
 “Arctic Monitoring Program; Pelagic Sampling Point 37” -\>
 `AMP-Pelagic-37`. The site code is the primary key for sites data and is
-used as a foreign key in
-[samples](https://NIVANorge.github.io/eDataDRF/articles/samples_data.md)
+used as a foreign key in the
+[Samples](https://NIVANorge.github.io/eDataDRF/articles/samples_data.md)
 and
-[measurements](https://NIVANorge.github.io/eDataDRF/articles/measurements_data.md).
+[Measurements](https://NIVANorge.github.io/eDataDRF/articles/measurements_data.md)
+data tables.
 
 ### Site Name - String, free, mandatory
 
@@ -100,7 +101,7 @@ These are summarised in the table below
 | Shrubland                         | Areas dominated by shrubs                                                  | D00   | 3.2    |     |      |
 | Grassland                         | Areas dominated by grasses                                                 | E00   |        |     |      |
 | Bare land and lichen/moss         | Sparsely vegetated areas                                                   | F00   | 3.3    |     |      |
-| Other                             | Specify details in [SITE_COMMENT](#site-comment---string-free-optional)    |       |        |     |      |
+| Other                             | Specify details in [SITE_COMMENT](#site-comment)                           |       |        |     |      |
 
 #### Controlled Vocabulary
 
@@ -415,10 +416,8 @@ identifiers, but they provide useful, human-readable data for
 understanding sampling sites. The [International Hydrographic
 Organisation’s version 3 Sea Areas](https://doi.org/10.14284/323)
 dataset is used to provide a reasonably-standardised set of names for
-seas and oceans. As with
-[Country](#iso-country---string-controlled-mandatory), Ocean is
-mandatory but should be marked as “Not relevant” when the site is on
-land.
+seas and oceans. As with [ISO Country](#iso-country), Ocean is mandatory
+but should be marked as “Not relevant” when the site is on land.
 
 Where sampling sites are located in national territory but also in or
 near (intentionally vague) an ocean or sea, we recommend recording both
@@ -516,7 +515,7 @@ coordinates and site types; for example, a site may be reported as being
 on land but with coordinates that are clearly in the ocean. In future,
 we plan to include an explicit metric of spatial uncertainty. A latitude
 is always associated with a [Coordinate Reference
-System](#coordinate-reference-system---string-controlled-mandatory).
+System](#coordinate-reference-system).
 
 ### Longitude - Numeric, free, mandatory
 
@@ -524,9 +523,9 @@ System](#coordinate-reference-system---string-controlled-mandatory).
 
 Site longitude (east-west position, also known as easting, between
 -180.0° and +180.0°) is recorded in decimal decimal degrees. See
-[Latitude](#latitude---numeric-free-mandatory) for further details. A
-longitude is always associated with a [Coordinate Reference
-System](#coordinate-reference-system---string-controlled-mandatory).
+[Latitude](#latitude) for further details. A longitude is always
+associated with a [Coordinate Reference
+System](#coordinate-reference-system).
 
 ### Coordinate Reference System - String, controlled, mandatory
 
@@ -568,8 +567,7 @@ coordinate_systems_vocabulary(common_only = TRUE)
 Altitude value above or below sea level, including depth of water
 sampling (but *not* depth of ice or sediment cores). This data is
 frequently not available for sampling sites, in which case it can be
-reported as 0. Associated with an [altitude
-unit](#altitude-unit---string-controlled-mandatory).
+reported as 0. Associated with an [altitude unit](#altitude-unit).
 
 ### Altitude Unit - String, controlled, mandatory
 

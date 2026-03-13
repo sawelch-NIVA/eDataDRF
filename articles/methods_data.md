@@ -32,8 +32,7 @@ table](https://NIVANorge.github.io/eDataDRF/articles/measurements_data.md).
 Because it is assumed that each measurement will typically have a
 sampling, extraction, fractionation, and analytical protocol associated
 with it, the measurements table has a foreign key for each type of
-methdology that references the relevant [Protocol
-ID](#protocol-id---string-free-mandatory).
+methdology that references the relevant [Protocol ID](#protocol-id).
 
 ``` r
 library(eDataDRF)
@@ -48,9 +47,9 @@ initialise_methods_tibble()
 
 ## Variables
 
-### Protocol ID - String, free, mandatory
+### Protocol ID
 
-`PROTOCOL_ID`
+`PROTOCOL_ID` - *string, free, mandatory*
 
 A short, terse identifier for the protocol. This is used as a primary
 key for Methods data and a foreign key in the Sampling Protocol,
@@ -76,18 +75,18 @@ generate_protocol_id(
 #> [1] "A01_ICPMS_TestCampai"
 ```
 
-### Campaign Name - String, free, mandatory
+### Campaign Name
 
-`CAMPAIGN_NAME`
+`CAMPAIGN_NAME` - *string, free, mandatory*
 
 A short, terse identifier for the campaign. Foreign key referenced from
 [Campaign
 data](https://NIVANorge.github.io/eDataDRF/articles/campaign_data.md),
-used to generate [Protocol ID](#protocol-id---string-free-mandatory).
+used to generate [Protocol ID](#protocol-id).
 
-### Protocol Category - String, controlled vocabulary, mandatory
+### Protocol Category
 
-`PROTOCOL_CATEGORY`
+`PROTOCOL_CATEGORY` - *string, controlled vocabulary, mandatory*
 
 The category of protocol/method (Sampling, Extraction, Fractionation,
 Analytical).
@@ -98,9 +97,9 @@ protocol_categories_vocabulary()
 #> [4] "Analytical Protocol"
 ```
 
-### Protocol Name - String, controlled vocabulary, mandatory
+### Protocol Name
 
-`PROTOCOL_NAME`
+`PROTOCOL_NAME` - *string, controlled vocabulary, mandatory*
 
 The consensus name (short and long) of a protocol or method used in
 sampling. Options are currently based on the aquatic ecotoxicology
@@ -108,8 +107,8 @@ domain, but will be extended and harmonised with relevant ontologies and
 taxonomies as practical.
 
 ``` r
-protocol_options_vocabulary()
-#> # A tibble: 75 × 3
+sampling_protocols_vocabulary()
+#> # A tibble: 22 × 3
 #>    Protocol_Type     Short_Name     Long_Name            
 #>    <chr>             <chr>          <chr>                
 #>  1 Sampling Protocol Not relevant   Not relevant         
@@ -122,12 +121,83 @@ protocol_options_vocabulary()
 #>  8 Sampling Protocol Seine net      Seine net sampling   
 #>  9 Sampling Protocol Electrofishing Electrofishing       
 #> 10 Sampling Protocol Plankton net   Plankton net sampling
-#> # ℹ 65 more rows
+#> # ℹ 12 more rows
+
+extraction_protocols_vocabulary()
+#> # A tibble: 19 × 3
+#>    Protocol_Type       Short_Name                        Long_Name              
+#>    <chr>               <chr>                             <chr>                  
+#>  1 Extraction Protocol Not relevant                      Not relevant           
+#>  2 Extraction Protocol Not reported                      Not reported           
+#>  3 Extraction Protocol None                              No extraction          
+#>  4 Extraction Protocol Methanol                          Methanol extraction    
+#>  5 Extraction Protocol Dichloromethane                   Dichloromethane extrac…
+#>  6 Extraction Protocol SPE Isolute Env+                  Solid phase extraction…
+#>  7 Extraction Protocol Membrane filtration 0.45um        Membrane filtration th…
+#>  8 Extraction Protocol Membrane filtration 0.2um         Membrane filtration th…
+#>  9 Extraction Protocol Membrane filtration               Membrane filtration    
+#> 10 Extraction Protocol Filtration                        Filtration             
+#> 11 Extraction Protocol Microwave-assisted acid digestion Microwave-assisted aci…
+#> 12 Extraction Protocol Acid digestion                    Acid digestion         
+#> 13 Extraction Protocol Pressurised liquid                Pressurised liquid ext…
+#> 14 Extraction Protocol Ultrasonic                        Ultrasonic extraction  
+#> 15 Extraction Protocol Soxhlet                           Soxhlet extraction     
+#> 16 Extraction Protocol QuEChERS                          Quick easy cheap effec…
+#> 17 Extraction Protocol Accelerated solvent               Accelerated solvent ex…
+#> 18 Extraction Protocol Sequential extraction             Sequential extraction …
+#> 19 Extraction Protocol Other                             Other
+
+fractionation_protocols_vocabulary()
+#> # A tibble: 19 × 3
+#>    Protocol_Type          Short_Name        Long_Name                           
+#>    <chr>                  <chr>             <chr>                               
+#>  1 Fractionation Protocol Not relevant      Not relevant                        
+#>  2 Fractionation Protocol Not reported      Not reported                        
+#>  3 Fractionation Protocol Total             Total fraction                      
+#>  4 Fractionation Protocol Particles         Particulate fraction                
+#>  5 Fractionation Protocol Colloidal         Colloidal fraction                  
+#>  6 Fractionation Protocol LMM               Low molecular mass fraction         
+#>  7 Fractionation Protocol Aqueous           Aqueous fraction                    
+#>  8 Fractionation Protocol Filtered 0.45um   Filtered through 0.45 micrometer me…
+#>  9 Fractionation Protocol Filtered 0.2um    Filtered through 0.2 micrometer mem…
+#> 10 Fractionation Protocol Dissolved         Dissolved fraction                  
+#> 11 Fractionation Protocol Filtered          Filtered fraction                   
+#> 12 Fractionation Protocol Acid extractable  Acid extractable fraction           
+#> 13 Fractionation Protocol Reducible         Reducible fraction                  
+#> 14 Fractionation Protocol Oxidisable        Oxidisable fraction                 
+#> 15 Fractionation Protocol Residual          Residual fraction                   
+#> 16 Fractionation Protocol Bioavailable      Bioavailable fraction               
+#> 17 Fractionation Protocol Free ion          Free ion activity                   
+#> 18 Fractionation Protocol Size fractionated Size fractionated                   
+#> 19 Fractionation Protocol Other             Other
+
+analytical_protocols_vocabulary()
+#> # A tibble: 15 × 3
+#>    Protocol_Type       Short_Name         Long_Name                             
+#>    <chr>               <chr>              <chr>                                 
+#>  1 Analytical Protocol Not relevant       Not relevant                          
+#>  2 Analytical Protocol Not reported       Not reported                          
+#>  3 Analytical Protocol GC-MS              Gas chromatography mass spectrometry  
+#>  4 Analytical Protocol LC-MS              Liquid chromatography mass spectromet…
+#>  5 Analytical Protocol LC-MS/MS           Liquid chromatography tandem mass spe…
+#>  6 Analytical Protocol GC-MS/MS           Gas chromatography tandem mass spectr…
+#>  7 Analytical Protocol UPLC               Ultra performance liquid chromatograp…
+#>  8 Analytical Protocol ICP-MS             Inductively coupled plasma mass spect…
+#>  9 Analytical Protocol ICP-OES            Inductively coupled plasma optical em…
+#> 10 Analytical Protocol AAS                Atomic absorption spectroscopy        
+#> 11 Analytical Protocol XRF                X-ray fluorescence spectroscopy       
+#> 12 Analytical Protocol Ion chromatography Ion chromatography                    
+#> 13 Analytical Protocol Spectrophotometry  Spectrophotometry                     
+#> 14 Analytical Protocol Fluorescence       Fluorescence spectroscopy             
+#> 15 Analytical Protocol Other              Other
+
+# call all of the above functions bound into a single table
+# protocol_options_vocabulary()
 ```
 
-### Protocol Comment - String, free, optional
+### Protocol Comment
 
-`PROTOCOL_COMMENT`
+`PROTOCOL_COMMENT` - *string, free, optional*
 
 Space for the recording of any additional notes or comments about the
 method deemed relevant. As information on the specific equipment or more

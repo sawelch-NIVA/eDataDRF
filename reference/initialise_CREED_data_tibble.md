@@ -33,6 +33,10 @@ score: Assessment score for the criterion
 
 limitations: Identified limitations or concerns for the criterion
 
+See
+[`vignette("CREED_data")`](https://NIVANorge.github.io/eDataDRF/articles/CREED_data.md)
+for more information.
+
 ## See also
 
 Other initialise_tibble:
@@ -49,4 +53,8 @@ Other initialise_tibble:
 
 Other CREED:
 [`CREED_choices_vocabulary()`](https://NIVANorge.github.io/eDataDRF/reference/CREED_choices_vocabulary.md),
+[`creed_tibble_to_mock_input()`](https://NIVANorge.github.io/eDataDRF/reference/creed_tibble_to_mock_input.md),
+[`example_CREED_relevance_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/example_CREED_relevance_tibble.md),
+[`example_CREED_reliability_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/example_CREED_reliability_tibble.md),
+[`example_CREED_scores_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/example_CREED_scores_tibble.md),
 [`initialise_CREED_scores_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/initialise_CREED_scores_tibble.md)

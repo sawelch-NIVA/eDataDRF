@@ -24,7 +24,8 @@ REFERENCE_ID: Unique identifier for the reference (Primary Key)
 REFERENCE_TYPE: Type of publication (Journal Article, Report, Dataset,
 etc.)
 
-DATA_SOURCE: Source or database where the reference was obtained
+DATA_SOURCE: Whether reference is source of data (Primary,
+Secondary/Review, Other)
 
 AUTHOR: Author(s) of the reference
 
@@ -56,6 +57,10 @@ DOCUMENT_NUMBER: Document or report number
 
 REF_COMMENT: Additional notes about the reference
 
+See
+[`vignette("references_data")`](https://NIVANorge.github.io/eDataDRF/articles/references_data.md)
+for more information.
+
 ## See also
 
 Other initialise_tibble:
@@ -71,4 +76,6 @@ Other initialise_tibble:
 [`initialise_sites_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/initialise_sites_tibble.md)
 
 Other reference:
+[`example_references_tibble()`](https://NIVANorge.github.io/eDataDRF/reference/example_references_tibble.md),
+[`generate_reference_id()`](https://NIVANorge.github.io/eDataDRF/reference/generate_reference_id.md),
 [`reference_character_limits()`](https://NIVANorge.github.io/eDataDRF/reference/reference_character_limits.md)

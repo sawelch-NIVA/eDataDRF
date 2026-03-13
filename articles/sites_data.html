@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Sites data • eDataDRF</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -19,11 +19,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="../index.html">eDataDRF</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,14 @@
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/NIVANorge/eDataDRF/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
 
@@ -88,7 +96,7 @@
 </h3>
 <p><code>SITE_CODE</code></p>
 <p>A short, unique code identifying the sampled site. Although formatting is not enforced on this field, we recommend using an abbreviated combination of the campaign, long form site name and any details relevant to the site. For example:</p>
-<p>“Arctic Monitoring Program; Pelagic Sampling Point 37” -&gt; <code>AMP-Pelagic-37</code>. The site code is the primary key for sites data and is used as a foreign key in <a href="samples_data.html">samples</a> and <a href="measurements_data.html">measurements</a>.</p>
+<p>“Arctic Monitoring Program; Pelagic Sampling Point 37” -&gt; <code>AMP-Pelagic-37</code>. The site code is the primary key for sites data and is used as a foreign key in the <a href="samples_data.html">Samples</a> and <a href="measurements_data.html">Measurements</a> data tables.</p>
 </section><section class="level2"><h3 id="site-name---string-free-mandatory">Site Name - String, free, mandatory<a class="anchor" aria-label="anchor" href="#site-name---string-free-mandatory"></a>
 </h3>
 <p><code>SITE_NAME</code></p>
@@ -262,7 +270,7 @@
 </tr>
 <tr class="odd">
 <td>Other</td>
-<td>Specify details in <a href="#site-comment---string-free-optional">SITE_COMMENT</a>
+<td>Specify details in <a href="#site-comment">SITE_COMMENT</a>
 </td>
 <td></td>
 <td></td>
@@ -564,7 +572,7 @@
 </section></section><section class="level2"><h3 id="iho-oceansea---string-controlled-mandatory">IHO Ocean/Sea - String, controlled, mandatory<a class="anchor" aria-label="anchor" href="#iho-oceansea---string-controlled-mandatory"></a>
 </h3>
 <p><code>OCEAN_IHO</code></p>
-<p>As with countries, oceans are not necessarily the best geographical identifiers, but they provide useful, human-readable data for understanding sampling sites. The <a href="https://doi.org/10.14284/323" class="external-link">International Hydrographic Organisation’s version 3 Sea Areas</a> dataset is used to provide a reasonably-standardised set of names for seas and oceans. As with <a href="#iso-country---string-controlled-mandatory">Country</a>, Ocean is mandatory but should be marked as “Not relevant” when the site is on land.</p>
+<p>As with countries, oceans are not necessarily the best geographical identifiers, but they provide useful, human-readable data for understanding sampling sites. The <a href="https://doi.org/10.14284/323" class="external-link">International Hydrographic Organisation’s version 3 Sea Areas</a> dataset is used to provide a reasonably-standardised set of names for seas and oceans. As with <a href="#iso-country">ISO Country</a>, Ocean is mandatory but should be marked as “Not relevant” when the site is on land.</p>
 <p>Where sampling sites are located in national territory but also in or near (intentionally vague) an ocean or sea, we recommend recording both variables.</p>
 <section class="level3"><h4 id="controlled-vocabulary-3">Controlled Vocabulary<a class="anchor" aria-label="anchor" href="#controlled-vocabulary-3"></a>
 </h4>
@@ -646,11 +654,11 @@
 </section></section><section class="level2"><h3 id="latitude---numeric-free-mandatory">Latitude - Numeric, free, mandatory<a class="anchor" aria-label="anchor" href="#latitude---numeric-free-mandatory"></a>
 </h3>
 <p><code>LATITUDE</code></p>
-<p>Site latitude (north-south position, also known as northing, between -90.0° and +90.0°) is recorded in decimal decimal degrees. Arbitrary precision (within the bounds of R’s numeric data type) is possible, but the degree of precision reported (i.e. decimal places) should be appropriate to the actual sampling. 3 decimal places corresponds to approximately 111 m accuracy, and 4 to within 11 m. Under some circumstances this can cause somewhat confusing combinations of coordinates and site types; for example, a site may be reported as being on land but with coordinates that are clearly in the ocean. In future, we plan to include an explicit metric of spatial uncertainty. A latitude is always associated with a <a href="#coordinate-reference-system---string-controlled-mandatory">Coordinate Reference System</a>.</p>
+<p>Site latitude (north-south position, also known as northing, between -90.0° and +90.0°) is recorded in decimal decimal degrees. Arbitrary precision (within the bounds of R’s numeric data type) is possible, but the degree of precision reported (i.e. decimal places) should be appropriate to the actual sampling. 3 decimal places corresponds to approximately 111 m accuracy, and 4 to within 11 m. Under some circumstances this can cause somewhat confusing combinations of coordinates and site types; for example, a site may be reported as being on land but with coordinates that are clearly in the ocean. In future, we plan to include an explicit metric of spatial uncertainty. A latitude is always associated with a <a href="#coordinate-reference-system">Coordinate Reference System</a>.</p>
 </section><section class="level2"><h3 id="longitude---numeric-free-mandatory">Longitude - Numeric, free, mandatory<a class="anchor" aria-label="anchor" href="#longitude---numeric-free-mandatory"></a>
 </h3>
 <p><code>LONGITUDE</code></p>
-<p>Site longitude (east-west position, also known as easting, between -180.0° and +180.0°) is recorded in decimal decimal degrees. See <a href="#latitude---numeric-free-mandatory">Latitude</a> for further details. A longitude is always associated with a <a href="#coordinate-reference-system---string-controlled-mandatory">Coordinate Reference System</a>.</p>
+<p>Site longitude (east-west position, also known as easting, between -180.0° and +180.0°) is recorded in decimal decimal degrees. See <a href="#latitude">Latitude</a> for further details. A longitude is always associated with a <a href="#coordinate-reference-system">Coordinate Reference System</a>.</p>
 </section><section class="level2"><h3 id="coordinate-reference-system---string-controlled-mandatory">Coordinate Reference System - String, controlled, mandatory<a class="anchor" aria-label="anchor" href="#coordinate-reference-system---string-controlled-mandatory"></a>
 </h3>
 <p><code>SITE_COORDINATE_SYSTEM</code></p>
@@ -668,7 +676,7 @@
 </section></section><section class="level2"><h3 id="altitude-value---numeric-free-mandatory">Altitude Value - Numeric, free, mandatory<a class="anchor" aria-label="anchor" href="#altitude-value---numeric-free-mandatory"></a>
 </h3>
 <p><code>ALTITUDE_VALUE</code></p>
-<p>Altitude value above or below sea level, including depth of water sampling (but <em>not</em> depth of ice or sediment cores). This data is frequently not available for sampling sites, in which case it can be reported as 0. Associated with an <a href="#altitude-unit---string-controlled-mandatory">altitude unit</a>.</p>
+<p>Altitude value above or below sea level, including depth of water sampling (but <em>not</em> depth of ice or sediment cores). This data is frequently not available for sampling sites, in which case it can be reported as 0. Associated with an <a href="#altitude-unit">altitude unit</a>.</p>
 </section><section class="level2"><h3 id="altitude-unit---string-controlled-mandatory">Altitude Unit - String, controlled, mandatory<a class="anchor" aria-label="anchor" href="#altitude-unit---string-controlled-mandatory"></a>
 </h3>
 <p><code>ALTITUDE_UNIT</code></p>
