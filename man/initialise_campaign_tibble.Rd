@@ -33,7 +33,7 @@ ENTERED_DATE: Date when the data was entered into the system (mandatory)
 
 CAMPAIGN_COMMENT: Additional notes or comments about the campaign (optional)
 
-See \code{vignette("campaign-data")} for more information.
+See \code{vignette("campaign_data")} for more information.
 }
 \seealso{
 Other initialise_tibble: 
@@ -47,6 +47,9 @@ Other initialise_tibble:
 \code{\link{initialise_references_tibble}()},
 \code{\link{initialise_samples_tibble}()},
 \code{\link{initialise_sites_tibble}()}
+
+Other campaign: 
+\code{\link{example_campaign_tibble}()}
 }
 \concept{campaign}
 \concept{initialise_tibble}

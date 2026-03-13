@@ -1,11 +1,19 @@
 url: https://NIVANorge.github.io/eDataDRF/
 template:
   bootstrap: 5
+  bslib:
+    font-size: "0.75rem"
+  light-switch: true
 
 navbar:
   structure:
     left: [intro, reference, articles, news]
     right: [search, github, lightswitch]
+
+glossary:
+  path: glossary.yml
+  popup: hover
+  show: true
 
 articles:
 - title: "Data tables"
@@ -28,6 +36,7 @@ articles:
 - title: "Other"
   contents:
   - validation
+  - rationale
 
 reference:
 - title: Initialise tibbles
@@ -49,7 +58,7 @@ reference:
 - contents:
   - ends_with("_vocabulary")
 - title: Character limits
-  desc: We should perhaps have more than one of these, eh?
+  desc: Character limits for some inputs
 - contents:
   - ends_with("_limits")
 - title: Generate IDs
@@ -58,8 +67,19 @@ reference:
   - abbreviate_string
   - generate_reference_id
   - generate_protocol_id
+  - generate_sample_id_with_components
 - title: Export
   desc: Export tables as zipped CSV files
 - contents:
   - get_dataset_display_name
   - export_campaign_zip
+- title: Example data
+  desc: Functions to generate example data
+- contents:
+  - contains("example_")
+  - creed_tibble_to_mock_input
+- title: Validation
+  desc: Functions using {pointblank} to validate data
+- contents:
+  - contains("validate")
+  - col_vals_in_set_verbose

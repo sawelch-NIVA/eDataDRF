@@ -55,6 +55,14 @@ inst/doc
 scratchpad/
 doc/
 /Meta/
+/vignettes/*.R
 
 # Large ontology files
 *.obo
+
+# Claude code
+.claude/
+/doc/
+
+# Readme stuff
+README_files/*

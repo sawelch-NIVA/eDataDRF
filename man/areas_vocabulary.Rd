@@ -2,12 +2,12 @@
 % Please edit documentation in R/fct_formats.R
 \name{areas_vocabulary}
 \alias{areas_vocabulary}
-\title{Ocean areas controlled vocabulary}
+\title{Ocean controlled vocabulary (wrapper for ocean_vocabulary())}
 \usage{
 areas_vocabulary()
 }
 \value{
-A character vector of ocean area options
+A character vector of ocean name options
 }
 \description{
 Returns controlled vocabulary options for IHO ocean regions.
@@ -15,6 +15,7 @@ Returns controlled vocabulary options for IHO ocean regions.
 \details{
 Provides ocean and sea names from the International Hydrographic Organisation (IHO)
 regions dataset, downloaded from https://www.marineregions.org/download_file.php?name=World_Seas_IHO_v3.zip.
+Wrapper for ocean_vocabulary() used to maintain compatibility.
 The complete list is read from an internal data file (IHO_oceans.rds)
 and includes options such as:
 
@@ -33,8 +34,10 @@ Other site:
 \code{\link{altitude_units_vocabulary}()},
 \code{\link{coordinate_systems_vocabulary}()},
 \code{\link{countries_vocabulary}()},
+\code{\link{example_sites_tibble}()},
 \code{\link{geographic_features_sub_vocabulary}()},
 \code{\link{geographic_features_vocabulary}()},
-\code{\link{initialise_sites_tibble}()}
+\code{\link{initialise_sites_tibble}()},
+\code{\link{ocean_vocabulary}()}
 }
 \concept{site}

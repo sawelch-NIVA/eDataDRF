@@ -70,6 +70,8 @@ PARAMETER_TYPE: Classification of the parameter
 MEASURED_TYPE: Type of measurement
 
 MEASUREMENT_COMMENT: Additional notes about the measurement
+
+See \code{vignette("measurements_data")} for more information.
 }
 \seealso{
 Other initialise_tibble: 
@@ -85,8 +87,9 @@ Other initialise_tibble:
 \code{\link{initialise_sites_tibble}()}
 
 Other measurement: 
+\code{\link{example_measurements_tibble}()},
 \code{\link{measured_categories_vocabulary}()},
-\code{\link{measured_flags_vocabulary}()},
+\code{\link{measured_flag_vocabulary}()},
 \code{\link{measured_types_vocabulary}()},
 \code{\link{parameter_unit_vocabulary}()},
 \code{\link{uncertainty_types_vocabulary}()}

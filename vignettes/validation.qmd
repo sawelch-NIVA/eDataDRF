@@ -1,0 +1,125 @@
+---
+title: "eData validation"
+subtitle: "Validation functions for eData"
+vignette: >
+  %\VignetteIndexEntry{references_data}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+```{r setup}
+library(eDataDRF)
+library(pointblank)
+library(gt)
+
+```
+
+The `{pointblank}` package for R provides robust, efficient validation features for data, allowing us to quickly check that our data conforms to the expected format. Although used of controlled vocabulary and the eData app allow us to constrain user-entered data, it is more practical to add an additional level of validation. This programmatic validation layer can be re-used wherever needed; this is particularly valuable when data may need to be transformed as part of the analysis pathway. 
+
+Below we demonstrate the use of the validation functions for each table type. Note: The Styling of included tables is currently rather broken, making them difficult to interpret. I will fix this when possible, but as it's not a functional issue I haven't prioritised it.
+
+Todo:
+
+- Add and harmonise example data
+- Test example data runs without error
+- Test validation functions against example data
+- One-line explanation of agent vs pipeline mode
+
+# Campaign data validation
+
+Typically when campaign data are generated/extracted for a data object the resulting table will only have one row. However, in downstream operations across multiple data objects, each campaign must have a unique identifier; this is checked as part of the validation below.
+
+```{r}
+#| label: campaign-validation
+example_campaign_tibble() |>
+  pb_validate_campaign()
+```
+
+# References data validation
+
+```{r}
+#| label: references-validation
+example_references_tibble() |>
+  pb_validate_reference()
+
+```
+
+# Sites data validation
+  
+```{r}
+#| label: sites-validation
+example_sites_tibble() |>
+  pb_validate_sites()
+```
+
+# Parameters data validation
+
+```{r}
+#| label: parameters-validation
+example_parameters_tibble() |>
+  pb_validate_parameters()
+```
+
+# Compartments data validation
+
+# TODO: Might as well add this one
+
+```{r}
+#| label: compartments-validation
+# example_compartments_tibble() |>
+#   pb_validate_compartments()
+```
+
+# Samples data validation
+
+```{r}
+#| label: samples-validation
+example_samples_tibble() |>
+  pb_validate_samples()
+```
+
+# Biota data validation
+
+```{r}
+#| label: biota-validation
+example_biota_tibble() |>
+  pb_validate_biota()
+```
+
+# Methods data validation
+
+```{r}
+#| label: methods-validation
+example_methods_tibble() |>
+  pb_validate_methods()
+```
+
+# Measurements data validation
+
+```{r}
+#| label: measurements-validation
+example_measurements_tibble() |>
+  pb_validate_measurements()
+```
+
+# CREED data validation
+
+# TODO: Again, might as well
+
+```{r}
+#| label: creed-validation
+# example_CREED_data_tibble() |>
+#   pb_validate_CREED_data()
+```
+
+# CREED scores data validation
+
+```{r}
+#| label: creed-scores-validation
+# example_CREED_scores_tibble() |>
+#   pb_validate_CREED_scores()
+```

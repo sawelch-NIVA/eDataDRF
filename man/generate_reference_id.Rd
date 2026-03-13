@@ -7,15 +7,43 @@
 generate_reference_id(date, author, title)
 }
 \arguments{
-\item{date}{Date (ACCESS_DATE or current date)}
+\item{date}{Integer or character. Publication year (e.g. \code{2018}).}
 
-\item{author}{Author string}
+\item{author}{Character. Semicolon-separated author list in
+"Last, First" format. Only the first author's last name is used
+(truncated to 10 alphanumeric characters).}
 
-\item{title}{Title string}
+\item{title}{Character. Publication title. The first three words are
+extracted and converted to PascalCase.}
 }
 \value{
-Character string with format DateAuthorFirstThreeWords
+Character string with format \code{YearLastnameTitleWords},
+e.g. \code{"2018Last1AStudyOf"}.
 }
 \description{
-Generate Reference ID
+Creates a compact reference identifier by combining the publication year,
+first author's last name, and the first three words of the title in
+PascalCase.
 }
+\examples{
+generate_reference_id(
+  date = 2018,
+  author = "Last1, First1; Last2, First2",
+  title = "A study of recent developments in the field"
+)
+# Returns: "2018Last1AStudyOf"
+
+}
+\seealso{
+Other generate_id: 
+\code{\link{abbreviate_string}()},
+\code{\link{generate_protocol_id}()},
+\code{\link{generate_sample_id_with_components}()}
+
+Other reference: 
+\code{\link{example_references_tibble}()},
+\code{\link{initialise_references_tibble}()},
+\code{\link{reference_character_limits}()}
+}
+\concept{generate_id}
+\concept{reference}

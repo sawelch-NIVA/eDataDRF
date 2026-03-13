@@ -23,6 +23,8 @@ ENVIRON_COMPARTMENT: Broad environmental compartment (Aquatic, Atmospheric, Terr
 ENVIRON_COMPARTMENT_SUB: Specific sub-category within the compartment
 
 MEASURED_CATEGORY: Measurement context (External Media, Internal to Organism, Surface of Organism)
+
+See \code{vignette("compartments_data")} for more information.
 }
 \seealso{
 Other initialise_tibble: 
@@ -40,6 +42,7 @@ Other initialise_tibble:
 Other compartment: 
 \code{\link{environ_compartments_sub_vocabulary}()},
 \code{\link{environ_compartments_vocabulary}()},
+\code{\link{example_compartments_tibble}()},
 \code{\link{measured_categories_vocabulary}()}
 }
 \concept{compartment}

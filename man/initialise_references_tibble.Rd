@@ -21,7 +21,7 @@ REFERENCE_ID: Unique identifier for the reference (Primary Key)
 
 REFERENCE_TYPE: Type of publication (Journal Article, Report, Dataset, etc.)
 
-DATA_SOURCE: Source or database where the reference was obtained
+DATA_SOURCE: Whether reference is source of data (Primary, Secondary/Review, Other)
 
 AUTHOR: Author(s) of the reference
 
@@ -52,6 +52,8 @@ EDITION: Edition of the publication
 DOCUMENT_NUMBER: Document or report number
 
 REF_COMMENT: Additional notes about the reference
+
+See \code{vignette("references_data")} for more information.
 }
 \seealso{
 Other initialise_tibble: 
@@ -67,6 +69,8 @@ Other initialise_tibble:
 \code{\link{initialise_sites_tibble}()}
 
 Other reference: 
+\code{\link{example_references_tibble}()},
+\code{\link{generate_reference_id}()},
 \code{\link{reference_character_limits}()}
 }
 \concept{initialise_tibble}

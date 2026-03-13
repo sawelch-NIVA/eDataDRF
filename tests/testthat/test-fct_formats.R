@@ -272,8 +272,8 @@ test_that("protocol_categories_vocabulary returns character vector", {
   expect_true(all(c("Sampling Protocol", "Analytical Protocol") %in% result))
 })
 
-test_that("measured_flags_vocabulary returns character vector", {
-  result <- measured_flags_vocabulary()
+test_that("measured_flag_vocabulary returns character vector", {
+  result <- measured_flag_vocabulary()
 
   expect_type(result, "character")
   expect_equal(length(result), 3)
@@ -365,7 +365,7 @@ test_that("reference_character_limits returns named list", {
 
 test_that("dummy_parameters_vocabulary returns data frame", {
   skip_if_not(
-    file.exists("data/dummy_quality_parameters.parquet"),
+    file.exists("data/quality_parameters.parquet"),
     "Data files not available"
   )
 
@@ -378,7 +378,7 @@ test_that("dummy_parameters_vocabulary returns data frame", {
 
 test_that("parameter_types_sub_vocabulary returns character vector", {
   skip_if_not(
-    file.exists("data/dummy_quality_parameters.parquet"),
+    file.exists("data/quality_parameters.parquet"),
     "Data files not available"
   )
 

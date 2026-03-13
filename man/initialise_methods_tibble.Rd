@@ -25,6 +25,8 @@ PROTOCOL_CATEGORY: Type of protocol (Sampling, Extraction, Fractionation, Analyt
 PROTOCOL_NAME: Standardised name of the protocol
 
 PROTOCOL_COMMENT: Additional notes or details about the protocol
+
+See \code{vignette("methods_data")} for more information.
 }
 \seealso{
 Other initialise_tibble: 
@@ -41,8 +43,10 @@ Other initialise_tibble:
 
 Other method: 
 \code{\link{analytical_protocols_vocabulary}()},
+\code{\link{example_methods_tibble}()},
 \code{\link{extraction_protocols_vocabulary}()},
 \code{\link{fractionation_protocols_vocabulary}()},
+\code{\link{generate_protocol_id}()},
 \code{\link{protocol_categories_vocabulary}()},
 \code{\link{protocol_options_vocabulary}()},
 \code{\link{sampling_protocols_vocabulary}()}

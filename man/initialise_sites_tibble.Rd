@@ -44,6 +44,8 @@ ENTERED_BY: Person or entity who entered the site data
 ENTERED_DATE: Date when the site data was entered
 
 SITE_COMMENT: Additional notes about the site
+
+See \code{vignette("sites_data")} for more information.
 }
 \seealso{
 Other initialise_tibble: 
@@ -63,8 +65,10 @@ Other site:
 \code{\link{areas_vocabulary}()},
 \code{\link{coordinate_systems_vocabulary}()},
 \code{\link{countries_vocabulary}()},
+\code{\link{example_sites_tibble}()},
 \code{\link{geographic_features_sub_vocabulary}()},
-\code{\link{geographic_features_vocabulary}()}
+\code{\link{geographic_features_vocabulary}()},
+\code{\link{ocean_vocabulary}()}
 }
 \concept{initialise_tibble}
 \concept{site}
